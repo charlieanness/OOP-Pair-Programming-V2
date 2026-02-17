@@ -16,6 +16,8 @@ public class CityRescueImpl implements CityRescue {
     @Override
     public void initialise(int width, int height) throws InvalidGridException {
         // TODO: implement
+        cityMap = new CityMap();
+        cityMap.intialise(width, height);
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
