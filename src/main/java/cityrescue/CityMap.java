@@ -1,6 +1,7 @@
 package cityrescue;
 
 import cityrescue.exceptions.InvalidGridException;
+import cityrescue.exceptions.InvalidLocationException;
 
 public class CityMap {
 

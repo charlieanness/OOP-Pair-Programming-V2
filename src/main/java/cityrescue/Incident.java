@@ -1,4 +1,6 @@
 package cityrescue;
+import cityrescue.enums.*;
+import cityrescue.exceptions.*;
 
 public class Incident {
 
