@@ -17,6 +17,9 @@ public class CityRescueImpl implements CityRescue {
     public Station[] stations;
     public Unit[] units;
     public Incident[] incidents;
+    public int stationCount;
+    public int unitCount;
+    public int incidentCount;
 
     @Override
     public void initialise(int width, int height) throws InvalidGridException {
@@ -24,9 +27,16 @@ public class CityRescueImpl implements CityRescue {
         cityMap = new CityMap(width, height);
         cityMap.clearObstacles();
 
-        currentTick = 0;
+        stations = new Station[30];
+        stationCount = 0;
 
-        throw new UnsupportedOperationException("Not implemented yet");
+        units = new Unit[30];
+        unitCount = 0;
+
+        incidents = new Incident[30];
+        incidentCount = 0;
+
+        currentTick = 0;
     }
 
     @Override
