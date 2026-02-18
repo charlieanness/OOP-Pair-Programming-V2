@@ -23,7 +23,6 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public void initialise(int width, int height) throws InvalidGridException {
-        // TODO: implement
         cityMap = new CityMap(width, height);
         cityMap.clearObstacles();
 
@@ -41,32 +40,34 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public int[] getGridSize() {
-        // TODO: implement
-        cityMap.getDimensions();
-        throw new UnsupportedOperationException("Not implemented yet");
+        return cityMap.getDimensions();
     }
 
     @Override
     public void addObstacle(int x, int y) throws InvalidLocationException {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        cityMap.addObstacle(x, y);
     }
 
     @Override
     public void removeObstacle(int x, int y) throws InvalidLocationException {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        cityMap.removeObstacle(x, y);
     }
 
     @Override
     public int addStation(String name, int x, int y) throws InvalidNameException, InvalidLocationException {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        newStation = Station(name, x, y);
+        stations[stationCount++] = newStation;
     }
 
     @Override
     public void removeStation(int stationId) throws IDNotRecognisedException, IllegalStateException {
-        // TODO: implement
+        for (int i=0; i < stationCount; i++)
+        {
+            if (stations[i].getID() == stationID)
+            {
+                //logic to remove from array
+            }
+        }
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
