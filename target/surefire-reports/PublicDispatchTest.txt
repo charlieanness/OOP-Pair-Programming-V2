@@ -2,9 +2,10 @@
 Test set: PublicDispatchTest
 -------------------------------------------------------------------------------
 Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.010 s <<< FAILURE! -- in PublicDispatchTest
-PublicDispatchTest.dispatch_assignsClosestEligibleUnit_thenLowestUnitId -- Time elapsed: 0.008 s <<< ERROR!
-java.lang.UnsupportedOperationException: Not implemented yet
-	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:19)
+PublicDispatchTest.dispatch_assignsClosestEligibleUnit_thenLowestUnitId -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.ArrayIndexOutOfBoundsException: Index 6 out of bounds for length 6
+	at cityrescue.CityMap.clearObstacles(CityMap.java:42)
+	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:28)
 	at PublicDispatchTest.setUp(PublicDispatchTest.java:14)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)

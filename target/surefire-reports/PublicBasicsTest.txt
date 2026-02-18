@@ -1,26 +1,29 @@
 -------------------------------------------------------------------------------
 Test set: PublicBasicsTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.031 s <<< FAILURE! -- in PublicBasicsTest
-PublicBasicsTest.addObstacle_outOfBounds_throws_andStateUnchanged -- Time elapsed: 0.007 s <<< ERROR!
-java.lang.UnsupportedOperationException: Not implemented yet
-	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:19)
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.020 s <<< FAILURE! -- in PublicBasicsTest
+PublicBasicsTest.addObstacle_outOfBounds_throws_andStateUnchanged -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+	at cityrescue.CityMap.clearObstacles(CityMap.java:42)
+	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:28)
 	at PublicBasicsTest.setUp(PublicBasicsTest.java:14)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-PublicBasicsTest.initialise_setsGridSize_andResetsTick -- Time elapsed: 0.001 s <<< ERROR!
-java.lang.UnsupportedOperationException: Not implemented yet
-	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:19)
+PublicBasicsTest.initialise_setsGridSize_andResetsTick -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+	at cityrescue.CityMap.clearObstacles(CityMap.java:42)
+	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:28)
 	at PublicBasicsTest.setUp(PublicBasicsTest.java:14)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
 PublicBasicsTest.addStation_assignsIdStartingAt1 -- Time elapsed: 0.004 s <<< ERROR!
-java.lang.UnsupportedOperationException: Not implemented yet
-	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:19)
+java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+	at cityrescue.CityMap.clearObstacles(CityMap.java:42)
+	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:28)
 	at PublicBasicsTest.setUp(PublicBasicsTest.java:14)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)

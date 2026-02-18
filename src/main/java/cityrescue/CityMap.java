@@ -1,7 +1,6 @@
 package cityrescue;
 
-import cityrescue.exceptions.InvalidGridException;
-import cityrescue.exceptions.InvalidLocationException;
+import cityrescue.exceptions.*;
 
 public class CityMap {
 
@@ -9,8 +8,9 @@ public class CityMap {
     private int width;
     private int height;
 
-    public CityMap(int width, int height) {
-        if (width <= 0 || height <= 0) {throw InvalidGridException;}
+    public CityMap(int width, int height) throws InvalidGridException
+    {
+        if (width <= 0 || height <= 0) {throw new InvalidGridException("Not a valid size!");}
 
         this.map = new int[height][width];
         this.width = width;
@@ -23,17 +23,17 @@ public class CityMap {
         return dimensions;
     }
 
-    public void addObstacle(int x, int y)
+    public void addObstacle(int x, int y) throws InvalidLocationException
     {
-        if (x > this.width || x < 0) {throw InvalidLocationException;}
-        if (y > this.height || y < 0) {throw InvalidLocationException;}
+        if (x > this.width || x < 0) {throw new InvalidLocationException("Not a valid location!");}
+        if (y > this.height || y < 0) {throw new InvalidLocationException("Not a valid location!");}
         this.map[y][x] = 1;
     }
 
-    public void removeObstacle(int x, int y)
+    public void removeObstacle(int x, int y) throws InvalidLocationException
     {
-        if (x > this.width || x < 0) {throw InvalidLocationException;}
-        if (y > this.height || y < 0) {throw InvalidLocationException;}
+        if (x > this.width || x < 0) {throw new InvalidLocationException("Not a valid location!");}
+        if (y > this.height || y < 0) {throw new InvalidLocationException("Not a valid location!");}
         this.map[y][x] = 0;
     }
 
