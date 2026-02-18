@@ -2,6 +2,7 @@ package cityrescue;
 
 import cityrescue.enums.*;
 import cityrescue.exceptions.*;
+import cityrescue.Station;
 
 /**
  * CityRescueImpl (Starter)
@@ -45,6 +46,7 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public void addObstacle(int x, int y) throws InvalidLocationException {
+        //currently, the exception handling is done in the func below, i wanna have it here instead
         cityMap.addObstacle(x, y);
     }
 
@@ -55,19 +57,17 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public int addStation(String name, int x, int y) throws InvalidNameException, InvalidLocationException {
-        newStation = Station(name, x, y);
+        if (x > cityMap.getWidth() || x < 0) {throw new InvalidLocationException("Not a valid location!");}
+        if (y > cityMap.getHeight() || y < 0) {throw new InvalidLocationException("Not a valid location!");}
+        if (name.isBlank() || name.isEmpty()) {throw new InvalidNameException("Not a valid name!");}
+        Station newStation = new Station(name, x, y);
         stations[stationCount++] = newStation;
+        return newStation.getID();
     }
 
     @Override
     public void removeStation(int stationId) throws IDNotRecognisedException, IllegalStateException {
-        for (int i=0; i < stationCount; i++)
-        {
-            if (stations[i].getID() == stationID)
-            {
-                //logic to remove from array
-            }
-        }
+        // TODO: implement
         throw new UnsupportedOperationException("Not implemented yet");
     }
 

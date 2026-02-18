@@ -11,9 +11,6 @@ public class Station {
 
     public Station(String name, int x, int y)
     {
-        if (x > this.width || x < 0) {throw new InvalidLocationException("Not a valid location!");}
-        if (y > this.height || y < 0) {throw new InvalidLocationException("Not a valid location!");}
-        if (name.IsBlank() || name.IsEmpty()) {throw new InvalidNameException("Not a valid name!");}
         this.x = x;
         this.y = y;
         this.name = name;

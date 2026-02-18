@@ -23,6 +23,16 @@ public class CityMap {
         return dimensions;
     }
 
+    public int getWidth()
+    {
+        return this.width;
+    }
+
+    public int getHeight()
+    {
+        return this.height;
+    }
+
     public void addObstacle(int x, int y) throws InvalidLocationException
     {
         if (x > this.width || x < 0) {throw new InvalidLocationException("Not a valid location!");}
