@@ -18,6 +18,10 @@ public class CityRescueImpl implements CityRescue {
     public static final int MAX_UNITS = 50;
     public static final int MAX_INCIDENTS = 200;
 
+    public int nextStationID;
+    public int nextUnitID;
+    public int nextIncidentID;
+
     public CityMap cityMap;
     public int currentTick;
     public Station[] stations;
@@ -35,12 +39,15 @@ public class CityRescueImpl implements CityRescue {
 
         stations = new Station[MAX_STATIONS];
         stationCount = 0;
+        nextStationID = 1;
 
         units = new Unit[MAX_UNITS];
         unitCount = 0;
+        nextUnitID = 1;
 
         incidents = new Incident[MAX_INCIDENTS];
         incidentCount = 0;
+        nextIncidentID = 1;
 
         currentTick = 0;
     }
@@ -73,7 +80,7 @@ public class CityRescueImpl implements CityRescue {
         if (name.isBlank() || name.isEmpty()) {throw new InvalidNameException("Not a valid name!");}
         if (stationCount == MAX_STATIONS) {throw new CapacityExceededException("Can't add another station!");}
 
-        Station newStation = new Station(name, x, y);
+        Station newStation = new Station(name, nextStationID++, x, y); //create new station and increment
         for (int i=0; i<stations.length; i++)
         {
             if (stations[i] == null)

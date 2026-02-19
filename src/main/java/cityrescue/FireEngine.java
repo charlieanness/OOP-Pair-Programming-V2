@@ -11,7 +11,7 @@ public class FireEngine extends Unit{
         this.unitStatus = UnitStatus.IDLE;
         this.x = x;
         this.y = y;
-        //TO DO: FINISH ALL UNITS, DECIDE ON HOW IDS WORK, CHANGE MAX ARRAY SIZES TO RECOM CONSTS
+        //TO DO: FINISH ALL UNITS, DECIDE ON HOW IDS WORK,
     }
 
 }
