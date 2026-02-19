@@ -1,29 +1,29 @@
 -------------------------------------------------------------------------------
 Test set: PublicBasicsTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.031 s <<< FAILURE! -- in PublicBasicsTest
-PublicBasicsTest.addObstacle_outOfBounds_throws_andStateUnchanged -- Time elapsed: 0.006 s <<< ERROR!
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.032 s <<< FAILURE! -- in PublicBasicsTest
+PublicBasicsTest.addObstacle_outOfBounds_throws_andStateUnchanged -- Time elapsed: 0.002 s <<< ERROR!
 java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
-	at cityrescue.CityMap.clearObstacles(CityMap.java:52)
-	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:28)
+	at cityrescue.CityMap.clearObstacles(CityMap.java:46)
+	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:30)
 	at PublicBasicsTest.setUp(PublicBasicsTest.java:14)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-PublicBasicsTest.initialise_setsGridSize_andResetsTick -- Time elapsed: 0.006 s <<< ERROR!
+PublicBasicsTest.initialise_setsGridSize_andResetsTick -- Time elapsed: 0.008 s <<< ERROR!
 java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
-	at cityrescue.CityMap.clearObstacles(CityMap.java:52)
-	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:28)
+	at cityrescue.CityMap.clearObstacles(CityMap.java:46)
+	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:30)
 	at PublicBasicsTest.setUp(PublicBasicsTest.java:14)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-PublicBasicsTest.addStation_assignsIdStartingAt1 -- Time elapsed: 0.002 s <<< ERROR!
+PublicBasicsTest.addStation_assignsIdStartingAt1 -- Time elapsed: 0.007 s <<< ERROR!
 java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
-	at cityrescue.CityMap.clearObstacles(CityMap.java:52)
-	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:28)
+	at cityrescue.CityMap.clearObstacles(CityMap.java:46)
+	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:30)
 	at PublicBasicsTest.setUp(PublicBasicsTest.java:14)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)

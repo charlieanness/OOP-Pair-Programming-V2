@@ -8,10 +8,8 @@ public class CityMap {
     private int width;
     private int height;
 
-    public CityMap(int width, int height) throws InvalidGridException
+    public CityMap(int width, int height)
     {
-        if (width <= 0 || height <= 0) {throw new InvalidGridException("Not a valid size!");}
-
         this.map = new int[height][width];
         this.width = width;
         this.height = height;
@@ -33,17 +31,13 @@ public class CityMap {
         return this.height;
     }
 
-    public void addObstacle(int x, int y) throws InvalidLocationException
+    public void addObstacle(int x, int y)
     {
-        if (x > this.width || x < 0) {throw new InvalidLocationException("Not a valid location!");}
-        if (y > this.height || y < 0) {throw new InvalidLocationException("Not a valid location!");}
         this.map[y][x] = 1;
     }
 
-    public void removeObstacle(int x, int y) throws InvalidLocationException
+    public void removeObstacle(int x, int y)
     {
-        if (x > this.width || x < 0) {throw new InvalidLocationException("Not a valid location!");}
-        if (y > this.height || y < 0) {throw new InvalidLocationException("Not a valid location!");}
         this.map[y][x] = 0;
     }
 
