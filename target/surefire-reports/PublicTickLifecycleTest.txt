@@ -1,12 +1,11 @@
 -------------------------------------------------------------------------------
 Test set: PublicTickLifecycleTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.011 s <<< FAILURE! -- in PublicTickLifecycleTest
-PublicTickLifecycleTest.tick_movesUnitTowardIncident_andEventuallyResolves -- Time elapsed: 0.005 s <<< ERROR!
-java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
-	at cityrescue.CityMap.clearObstacles(CityMap.java:46)
-	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:30)
-	at PublicTickLifecycleTest.setUp(PublicTickLifecycleTest.java:14)
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.029 s <<< FAILURE! -- in PublicTickLifecycleTest
+PublicTickLifecycleTest.tick_movesUnitTowardIncident_andEventuallyResolves -- Time elapsed: 0.020 s <<< ERROR!
+java.lang.UnsupportedOperationException: Not implemented yet
+	at cityrescue.CityRescueImpl.addUnit(CityRescueImpl.java:131)
+	at PublicTickLifecycleTest.tick_movesUnitTowardIncident_andEventuallyResolves(PublicTickLifecycleTest.java:20)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)

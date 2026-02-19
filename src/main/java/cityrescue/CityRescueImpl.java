@@ -3,6 +3,7 @@ package cityrescue;
 import cityrescue.enums.*;
 import cityrescue.exceptions.*;
 import cityrescue.Station;
+import java.util.Arrays;
 
 /**
  * CityRescueImpl (Starter)
@@ -27,7 +28,7 @@ public class CityRescueImpl implements CityRescue {
         if (width <= 0 || height <= 0) {throw new InvalidGridException("Not a valid size!");}
 
         cityMap = new CityMap(width, height);
-        cityMap.clearObstacles();
+        //cityMap.clearObstacles();
 
         int size = cityMap.getWidth()*cityMap.getHeight();
 
@@ -115,14 +116,13 @@ public class CityRescueImpl implements CityRescue {
         int pos = 0;
         for (int i=0; i<stations.length; i++)
         {
-            if (station[i] != null)
+            if (stations[i] != null)
             {
-                ids[pos++] = station[i].getID();
+                ids[pos++] = stations[i].getID();
             }
         }
         Arrays.sort(ids);
         return ids;
-        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     @Override

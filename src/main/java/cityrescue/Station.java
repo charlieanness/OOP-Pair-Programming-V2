@@ -5,7 +5,7 @@ public class Station {
     private String name;
     private int capacity;
     private int stationID;
-    private static int nextID;
+    private static int nextID = 1;
     private int x;
     private int y;
 

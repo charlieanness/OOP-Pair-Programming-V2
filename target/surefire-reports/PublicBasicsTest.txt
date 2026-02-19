@@ -1,30 +1,32 @@
 -------------------------------------------------------------------------------
 Test set: PublicBasicsTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.032 s <<< FAILURE! -- in PublicBasicsTest
-PublicBasicsTest.addObstacle_outOfBounds_throws_andStateUnchanged -- Time elapsed: 0.002 s <<< ERROR!
-java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
-	at cityrescue.CityMap.clearObstacles(CityMap.java:46)
-	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:30)
-	at PublicBasicsTest.setUp(PublicBasicsTest.java:14)
+Tests run: 3, Failures: 1, Errors: 2, Skipped: 0, Time elapsed: 0.056 s <<< FAILURE! -- in PublicBasicsTest
+PublicBasicsTest.addObstacle_outOfBounds_throws_andStateUnchanged -- Time elapsed: 0.007 s <<< ERROR!
+java.lang.UnsupportedOperationException: Not implemented yet
+	at cityrescue.CityRescueImpl.getStatus(CityRescueImpl.java:209)
+	at PublicBasicsTest.addObstacle_outOfBounds_throws_andStateUnchanged(PublicBasicsTest.java:34)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-PublicBasicsTest.initialise_setsGridSize_andResetsTick -- Time elapsed: 0.008 s <<< ERROR!
-java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
-	at cityrescue.CityMap.clearObstacles(CityMap.java:46)
-	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:30)
-	at PublicBasicsTest.setUp(PublicBasicsTest.java:14)
+PublicBasicsTest.initialise_setsGridSize_andResetsTick -- Time elapsed: 0.016 s <<< ERROR!
+java.lang.UnsupportedOperationException: Not implemented yet
+	at cityrescue.CityRescueImpl.getStatus(CityRescueImpl.java:209)
+	at PublicBasicsTest.initialise_setsGridSize_andResetsTick(PublicBasicsTest.java:21)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-PublicBasicsTest.addStation_assignsIdStartingAt1 -- Time elapsed: 0.007 s <<< ERROR!
-java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
-	at cityrescue.CityMap.clearObstacles(CityMap.java:46)
-	at cityrescue.CityRescueImpl.initialise(CityRescueImpl.java:30)
-	at PublicBasicsTest.setUp(PublicBasicsTest.java:14)
+PublicBasicsTest.addStation_assignsIdStartingAt1 -- Time elapsed: 0.013 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <1> but was: <4>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at PublicBasicsTest.addStation_assignsIdStartingAt1(PublicBasicsTest.java:28)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
