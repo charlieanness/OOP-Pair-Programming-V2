@@ -4,13 +4,13 @@ import cityrescue.exceptions.*;
 
 public class CityMap {
 
-    private int[][] map;
+    private boolean[][] blocked;
     private int width;
     private int height;
 
     public CityMap(int width, int height)
     {
-        this.map = new int[height][width];
+        this.blocked = new boolean[height][width];
         this.width = width;
         this.height = height;
     }
@@ -33,18 +33,18 @@ public class CityMap {
 
     public void addObstacle(int x, int y)
     {
-        this.map[y][x] = 1;
+        this.blocked[y][x] = true;
     }
 
     public void removeObstacle(int x, int y)
     {
-        this.map[y][x] = 0;
+        this.blocked[y][x] = false;
     }
 
     public void clearObstacles() {
-        for (int i=0; i<map.length; i++) {
-            for (int j=0; i<map[i].length; i++) {
-                map[i][j] = 0;
+        for (int i=0; i<blocked.length; i++) {
+            for (int j=0; i<blocked[i].length; i++) {
+                blocked[i][j] = false;
             }
         }
     }

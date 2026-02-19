@@ -14,6 +14,10 @@ import java.util.Arrays;
 public class CityRescueImpl implements CityRescue {
 
     // TODO: add fields (map, arrays for stations/units/incidents, counters, tick, etc.)
+    public static final int MAX_STATIONS = 20;
+    public static final int MAX_UNITS = 50;
+    public static final int MAX_INCIDENTS = 200;
+
     public CityMap cityMap;
     public int currentTick;
     public Station[] stations;
@@ -28,17 +32,14 @@ public class CityRescueImpl implements CityRescue {
         if (width <= 0 || height <= 0) {throw new InvalidGridException("Not a valid size!");}
 
         cityMap = new CityMap(width, height);
-        //cityMap.clearObstacles();
 
-        int size = cityMap.getWidth()*cityMap.getHeight();
-
-        stations = new Station[size];
+        stations = new Station[MAX_STATIONS];
         stationCount = 0;
 
-        units = new Unit[size];
+        units = new Unit[MAX_UNITS];
         unitCount = 0;
 
-        incidents = new Incident[size];
+        incidents = new Incident[MAX_INCIDENTS];
         incidentCount = 0;
 
         currentTick = 0;
@@ -70,6 +71,7 @@ public class CityRescueImpl implements CityRescue {
         if (x > cityMap.getWidth() || x < 0) {throw new InvalidLocationException("Not a valid location!");}
         if (y > cityMap.getHeight() || y < 0) {throw new InvalidLocationException("Not a valid location!");}
         if (name.isBlank() || name.isEmpty()) {throw new InvalidNameException("Not a valid name!");}
+        if (stationCount == MAX_STATIONS) {throw new CapacityExceededException("Can't add another station!");}
 
         Station newStation = new Station(name, x, y);
         for (int i=0; i<stations.length; i++)
@@ -77,9 +79,10 @@ public class CityRescueImpl implements CityRescue {
             if (stations[i] == null)
             {
                 stations[i] = newStation;
+                stationCount++;
+                break;
             }
         }
-        stationCount++;
         return newStation.getID();
     }
 
@@ -89,8 +92,15 @@ public class CityRescueImpl implements CityRescue {
         {
             if (stations[i].getID() == stationId)
             {
+                if (stations[i].getUnits().length != 0) //if it doesnt have any units left, then it can be removed
+                {
                 stations[i] = null;
+                stationCount--;
+                break;
+                } //if it still has units, it cannot be removed
+                else {throw new IllegalStateException("This station still has units!");}
             }
+            if (i == MAX_STATIONS-1) {throw new IDNotRecognisedException("No station with that ID exists!");}
         }
     }
 
@@ -102,11 +112,9 @@ public class CityRescueImpl implements CityRescue {
             if (stations[i].getID() == stationId)
             {
                 stations[i].setCapacity(maxUnits);
+                break;
             }
-            if (i==stations.length-1)
-            {
-                throw new IDNotRecognisedException("No station exists with that ID");
-            }
+            if (i == MAX_STATIONS-1) {throw new IDNotRecognisedException("No station with that ID exists!");}
         }
     }
 
