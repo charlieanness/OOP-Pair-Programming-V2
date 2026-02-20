@@ -10,4 +10,6 @@ public abstract class Unit {
     protected int x;
     protected int y;
 
+    protected abstract boolean canHandle(IncidentType type);
+    
 }

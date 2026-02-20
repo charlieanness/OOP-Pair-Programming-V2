@@ -1,5 +1,7 @@
 package cityrescue;
 
+import cityrescue.exceptions.IDNotRecognisedException;
+
 public class Station {
 
     private String name;
@@ -20,7 +22,7 @@ public class Station {
 
     public void setCapacity(int capacity)
     {
-        this.capacity = capacity;
+        this.capacity = capacity; //NUMBER OF UNITS THAT IT CAN HOLD (MAX), not the number it has
     }
 
     public Unit[] getUnits()
@@ -28,9 +30,26 @@ public class Station {
         return this.units;
     }
 
+    public boolean isFull()
+    {
+        return (this.units.length == this.capacity);
+    }
+
     public int getID()
     {
         return this.stationID;
+    }
+
+    public static Station getStationFromID(Station[] stations) throws IDNotRecognisedException
+    {
+        for (int i=0; i<stations.length; i++)
+        {
+            if (stations[i].getID() == stationId)
+            {
+                return station[i];
+            }
+        }
+        throw new IDNotRecognisedException("No station with that ID exists!");
     }
 
 }

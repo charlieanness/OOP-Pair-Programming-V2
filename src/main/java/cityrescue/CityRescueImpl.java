@@ -143,6 +143,12 @@ public class CityRescueImpl implements CityRescue {
     @Override
     public int addUnit(int stationId, UnitType type) throws IDNotRecognisedException, InvalidUnitException, IllegalStateException {
         // TODO: implement
+        if (type == null) {throw new InvalidUnitException("Unit type is null!");}
+        station = Station.getStationFromID(stations); //will throw IDNotRecognisedException if necessary
+        if (station.isFull()) {throw new IllegalStateException("Station is full!");}
+
+        //need to actually create unit
+        
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
