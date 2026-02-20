@@ -146,7 +146,6 @@ public class CityRescueImpl implements CityRescue {
         Station station = Station.getStationFromID(stations, stationId); //will throw IDNotRecognisedException if necessary
         if (station.isFull()) {throw new IllegalStateException("Station is full!");}
 
-        //need to actually create unit
         Unit newUnit;
         switch (type) {
         case AMBULANCE:
@@ -158,6 +157,7 @@ public class CityRescueImpl implements CityRescue {
         case FIRE_ENGINE:
             newUnit = new FireEngine(nextUnitID++, station.getX(), station.getY());
         }
+        //add unit to station, return UnitID
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
