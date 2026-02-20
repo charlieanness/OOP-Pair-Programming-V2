@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="PublicOutputFormatTest" time="0.074" tests="2" errors="2" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="PublicOutputFormatTest" time="0.102" tests="2" errors="2" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="session.topDirectory" value="/workspaces/OOP-Pair-Programming-Test-Repo"/>
     <property name="sun.boot.library.path" value="/usr/local/sdkman/candidates/java/17.0.17-amzn/lib"/>
-    <property name="sun.java.command" value="/workspaces/OOP-Pair-Programming-Test-Repo/target/surefire/surefirebooter-20260220153353468_3.jar /workspaces/OOP-Pair-Programming-Test-Repo/target/surefire 2026-02-20T15-33-53_289-jvmRun1 surefire-20260220153353468_1tmp surefire_0-20260220153353468_2tmp"/>
+    <property name="sun.java.command" value="/workspaces/OOP-Pair-Programming-Test-Repo/target/surefire/surefirebooter-20260220155729525_3.jar /workspaces/OOP-Pair-Programming-Test-Repo/target/surefire 2026-02-20T15-57-29_325-jvmRun1 surefire-20260220155729525_1tmp surefire_0-20260220155729525_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/workspaces/OOP-Pair-Programming-Test-Repo/target/test-classes:/workspaces/OOP-Pair-Programming-Test-Repo/target/classes:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.2/junit-jupiter-5.10.2.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/home/codespace/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/home/codespace/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/workspaces/OOP-Pair-Programming-Test-Repo/target/surefire/surefirebooter-20260220153353468_3.jar"/>
+    <property name="surefire.real.class.path" value="/workspaces/OOP-Pair-Programming-Test-Repo/target/surefire/surefirebooter-20260220155729525_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.17+10-LTS"/>
     <property name="user.name" value="codespace"/>
@@ -53,19 +53,19 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="getStatus_containsRequiredHeadings" classname="PublicOutputFormatTest" time="0.037">
+  <testcase name="getStatus_containsRequiredHeadings" classname="PublicOutputFormatTest" time="0.055">
     <error message="Not implemented yet" type="java.lang.UnsupportedOperationException"><![CDATA[java.lang.UnsupportedOperationException: Not implemented yet
-	at cityrescue.CityRescueImpl.getStatus(CityRescueImpl.java:233)
+	at cityrescue.CityRescueImpl.getStatus(CityRescueImpl.java:237)
 	at PublicOutputFormatTest.getStatus_containsRequiredHeadings(PublicOutputFormatTest.java:19)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 ]]></error>
   </testcase>
-  <testcase name="viewUnit_and_viewIncident_haveStablePrefixes" classname="PublicOutputFormatTest" time="0.003">
+  <testcase name="viewUnit_and_viewIncident_haveStablePrefixes" classname="PublicOutputFormatTest" time="0.008">
     <error message="Not implemented yet" type="java.lang.UnsupportedOperationException"><![CDATA[java.lang.UnsupportedOperationException: Not implemented yet
-	at cityrescue.CityRescueImpl.addUnit(CityRescueImpl.java:155)
-	at PublicOutputFormatTest.viewUnit_and_viewIncident_haveStablePrefixes(PublicOutputFormatTest.java:28)
+	at cityrescue.CityRescueImpl.reportIncident(CityRescueImpl.java:195)
+	at PublicOutputFormatTest.viewUnit_and_viewIncident_haveStablePrefixes(PublicOutputFormatTest.java:29)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)

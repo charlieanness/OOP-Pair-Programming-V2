@@ -11,5 +11,10 @@ public abstract class Unit {
     protected int y;
 
     protected abstract boolean canHandle(IncidentType type);
+
+    protected int getID()
+    {
+        return this.unitID;
+    }
     
 }

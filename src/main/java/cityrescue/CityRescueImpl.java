@@ -150,9 +150,13 @@ public class CityRescueImpl implements CityRescue {
             break;
         case FIRE_ENGINE:
             newUnit = new FireEngine(nextUnitID++, station.getX(), station.getY());
+            break;
+        default:
+            throw new InvalidUnitException("Unit type is not valid!");
         }
-        //add unit to station, return UnitID
-        throw new UnsupportedOperationException("Not implemented yet");
+        
+        station.addUnitToStation(newUnit);
+        return newUnit.getID();
     }
 
     @Override
