@@ -6,6 +6,7 @@ cityrescue/exceptions/InvalidGridException.class
 cityrescue/enums/UnitStatus.class
 cityrescue/CityRescue.class
 cityrescue/PoliceCar.class
+cityrescue/CityRescueImpl$1.class
 cityrescue/Ambulance.class
 cityrescue/enums/UnitType.class
 cityrescue/exceptions/IDNotRecognisedException.class

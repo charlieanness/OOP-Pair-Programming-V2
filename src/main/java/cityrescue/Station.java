@@ -40,13 +40,23 @@ public class Station {
         return this.stationID;
     }
 
-    public static Station getStationFromID(Station[] stations) throws IDNotRecognisedException
+    public int getX()
+    {
+        return this.x;
+    }
+
+    public int getY()
+    {
+        return this.y;
+    }
+
+    public static Station getStationFromID(Station[] stations, int stationID) throws IDNotRecognisedException
     {
         for (int i=0; i<stations.length; i++)
         {
-            if (stations[i].getID() == stationId)
+            if (stations[i].getID() == stationID)
             {
-                return station[i];
+                return stations[i];
             }
         }
         throw new IDNotRecognisedException("No station with that ID exists!");
