@@ -99,7 +99,7 @@ public class CityRescueImpl implements CityRescue {
         {
             if (stations[i].getID() == stationId)
             {
-                if (stations[i].getUnits().length != 0) //if it doesnt have any units left, then it can be removed
+                if (stations[i].getUnitCount() == 0) //if it doesnt have any units left, then it can be removed
                 {
                 stations[i] = null;
                 stationCount--;
@@ -114,15 +114,9 @@ public class CityRescueImpl implements CityRescue {
     @Override
     public void setStationCapacity(int stationId, int maxUnits) throws IDNotRecognisedException, InvalidCapacityException {
         if (maxUnits <= 0 || maxUnits < unitCount) {throw new InvalidCapacityException("Invalid Capacity");}
-        for (int i=0; i<stations.length; i++)
-        {
-            if (stations[i].getID() == stationId)
-            {
-                stations[i].setCapacity(maxUnits);
-                break;
-            }
-            if (i == MAX_STATIONS-1) {throw new IDNotRecognisedException("No station with that ID exists!");}
-        }
+
+        Station station = Station.getStationFromID(stations, stationId); //can throw IDNotRecognisedException
+        station.setCapacity(maxUnits);
     }
 
     @Override

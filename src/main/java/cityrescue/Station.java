@@ -8,6 +8,7 @@ public class Station {
     private int capacity;
     private int stationID;
     private Unit[] units;
+    private int unitCount;
     private int x;
     private int y;
 
@@ -48,6 +49,11 @@ public class Station {
     public int getY()
     {
         return this.y;
+    }
+
+    public int getUnitCount()
+    {
+        return this.unitCount;
     }
 
     public static Station getStationFromID(Station[] stations, int stationID) throws IDNotRecognisedException

@@ -1,18 +1,18 @@
 -------------------------------------------------------------------------------
 Test set: PublicOutputFormatTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.109 s <<< FAILURE! -- in PublicOutputFormatTest
-PublicOutputFormatTest.getStatus_containsRequiredHeadings -- Time elapsed: 0.058 s <<< ERROR!
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.074 s <<< FAILURE! -- in PublicOutputFormatTest
+PublicOutputFormatTest.getStatus_containsRequiredHeadings -- Time elapsed: 0.037 s <<< ERROR!
 java.lang.UnsupportedOperationException: Not implemented yet
-	at cityrescue.CityRescueImpl.getStatus(CityRescueImpl.java:239)
+	at cityrescue.CityRescueImpl.getStatus(CityRescueImpl.java:233)
 	at PublicOutputFormatTest.getStatus_containsRequiredHeadings(PublicOutputFormatTest.java:19)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-PublicOutputFormatTest.viewUnit_and_viewIncident_haveStablePrefixes -- Time elapsed: 0.007 s <<< ERROR!
+PublicOutputFormatTest.viewUnit_and_viewIncident_haveStablePrefixes -- Time elapsed: 0.003 s <<< ERROR!
 java.lang.UnsupportedOperationException: Not implemented yet
-	at cityrescue.CityRescueImpl.addUnit(CityRescueImpl.java:161)
+	at cityrescue.CityRescueImpl.addUnit(CityRescueImpl.java:155)
 	at PublicOutputFormatTest.viewUnit_and_viewIncident_haveStablePrefixes(PublicOutputFormatTest.java:28)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
