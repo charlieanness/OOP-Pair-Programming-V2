@@ -72,17 +72,31 @@ public class Station {
     public void addUnitToStation(Unit unit)
     {
         //checks that the unitcount is not the same as the max units array size, throws error if it is
-        if (this.unitCount == this.units.length) {throw new CapacityExceededException("Can't add another unit!");} 
-        for (int i=0; i<this.units.length;i++)
+        if (this.unitCount == units.length) {throw new CapacityExceededException("Can't add another unit!");} 
+        for (int i=0; i<units.length;i++) //removed .this before units in this line and above
         {
             if (this.units[i] == null) //checks for space
             {
                 this.units[i] = unit;
                 this.unitCount++;
+                this.units[i].ownerStationID = this.getID(); //units owner ID is set to this stations ID
                 break;
             }
         }
         
+    }
+
+    public void removeUnitFromStation(Unit unit)
+    {
+        for (int i=0; i<units.length; i++)
+        {
+            if (units[i].getID() == unit.getID())
+            {
+                units[i] = null;
+                unitCount--;
+                break;
+            }
+        }
     }
 
 }

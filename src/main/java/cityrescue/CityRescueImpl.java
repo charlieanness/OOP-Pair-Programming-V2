@@ -139,6 +139,7 @@ public class CityRescueImpl implements CityRescue {
         if (type == null) {throw new InvalidUnitException("Unit type is null!");}
         Station station = Station.getStationFromID(stations, stationId); //will throw IDNotRecognisedException if necessary
         if (station.isFull()) {throw new IllegalStateException("Station is full!");}
+        if (unitCount == MAX_UNITS) {throw new CapacityExceededException("Can't add more units!");}
 
         Unit newUnit;
         switch (type) {
@@ -155,14 +156,45 @@ public class CityRescueImpl implements CityRescue {
             throw new InvalidUnitException("Unit type is not valid!");
         }
         
-        station.addUnitToStation(newUnit);
+        station.addUnitToStation(newUnit); //add unit to station
+
+        //adding newUnit to city units array and incrementing city unit count
+        for (int i=0; i<units.length;i++)
+        {
+            if (units[i] == null)
+            {
+                units[i] = newUnit;
+                unitCount++; //increment city unit count
+                break;
+            }
+        }
+        
         return newUnit.getID();
     }
 
     @Override
     public void decommissionUnit(int unitId) throws IDNotRecognisedException, IllegalStateException {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+
+        Unit selectedUnit = null; //initially set to null
+        int pos = 0; //indicates index of unit in city units array
+
+        for (int i=0; i<units.length; i++) //find required unit by ID
+        {
+            if (units[i].getID() == unitId)
+            {
+                selectedUnit = units[i];
+                pos = i;
+                break;
+            }
+            if (i==MAX_UNITS-1) {throw new IDNotRecognisedException("No unit exists with that ID");}
+        }
+        if (selectedUnit.isBusy()) {throw new IllegalStateException("Unit is busy, cannot retire!");}
+
+        //finds owner station, removes unit from that station, then removes unit from city array and decrements count
+        Station ownerStation = Station.getStationFromID(stations, selectedUnit.getOwnerStationID());
+        ownerStation.removeUnitFromStation(selectedUnit);
+        units[pos] = null;
+        unitCount--;
     }
 
     @Override
