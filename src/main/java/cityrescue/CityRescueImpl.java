@@ -268,8 +268,16 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public void cancelIncident(int incidentId) throws IDNotRecognisedException, IllegalStateException {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        Incident selectedIncident = Incident.getIncidentFromID(incidents, incidentId);
+        if (selectedIncident.canBeCancelled() == false) {throw new IllegalStateException("Incident cannot be cancelled!");}
+        
+        if (selectedIncident.getIncidentStatus() == IncidentStatus.DISPATCHED)
+        {
+            Unit assignedUnit = selectedIncident.getAssignedUnit();
+            assignedUnit.unitStatus = UnitStatus.IDLE;
+            assignedUnit.currentIncidentID = 999;
+        }
+        selectedIncident.setIncidentStatus(IncidentStatus.CANCELLED);
     }
 
     @Override

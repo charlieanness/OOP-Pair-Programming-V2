@@ -13,7 +13,7 @@ public class Ambulance extends Unit{
         this.unitID = ID;
         this.x = x;
         this.y = y;
-        //TO DO: FINISH ALL UNITS, DECIDE ON HOW IDS WORK
+        this.currentIncidentID = 999;
     }
 
     @Override
