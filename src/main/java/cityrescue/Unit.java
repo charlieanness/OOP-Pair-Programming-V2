@@ -10,6 +10,8 @@ public abstract class Unit {
     protected int x;
     protected int y;
     protected int ownerStationID;
+    protected int currentIncidentID;
+    protected int currentIncidentWork;
 
     protected abstract boolean canHandle(IncidentType type);
 
@@ -31,6 +33,20 @@ public abstract class Unit {
     protected void setUnitStatus(UnitStatus status)
     {
         unitStatus = status;
+    }
+
+    protected String viewUnitStats()
+    {
+        return
+        (
+            "U#"+unitID+
+            " TYPE="+unitType+
+            " HOME="+ownerStationID+
+            " LOC=("+x+","+y+")"+
+            " STATUS="+unitStatus+
+            " INCIDENT="+currentIncidentID+
+            " WORK ="+currentIncidentWork
+        );
     }
 
     protected static Unit getUnitFromID(Unit[] units, int unitID) throws IDNotRecognisedException

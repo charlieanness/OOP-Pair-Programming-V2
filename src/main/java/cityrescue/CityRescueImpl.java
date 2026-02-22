@@ -240,8 +240,8 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public String viewUnit(int unitId) throws IDNotRecognisedException {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        Unit unit = Unit.getUnitFromID(units, unitId); //gets unit, will throw ID error appropriately
+        return unit.viewUnitStats(); //prints unit info
     }
 
     @Override
