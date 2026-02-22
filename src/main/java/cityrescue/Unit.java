@@ -23,6 +23,23 @@ public abstract class Unit {
         return this.ownerStationID;
     }
 
+    protected UnitStatus getUnitStatus()
+    {
+        return this.unitStatus;
+    }
+
+    protected static Unit getUnitFromID(Unit[] units, int unitID) throws IDNotRecognisedException
+    {
+        for (int i=0; i<units.length; i++)
+        {
+            if (units[i].getID() == unitID)
+            {
+                return units[i];
+            }
+        }
+        throw new IDNotRecognisedException("No unit with that ID exists!");
+    }
+
     protected boolean isBusy()
     {
         return !(unitStatus == UnitStatus.EN_ROUTE || unitStatus == UnitStatus.AT_SCENE);
