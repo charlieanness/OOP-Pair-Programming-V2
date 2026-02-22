@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: PublicDispatchTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.008 s <<< FAILURE! -- in PublicDispatchTest
-PublicDispatchTest.dispatch_assignsClosestEligibleUnit_thenLowestUnitId -- Time elapsed: 0.003 s <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.015 s <<< FAILURE! -- in PublicDispatchTest
+PublicDispatchTest.dispatch_assignsClosestEligibleUnit_thenLowestUnitId -- Time elapsed: 0.010 s <<< ERROR!
 java.lang.UnsupportedOperationException: Not implemented yet
-	at cityrescue.CityRescueImpl.reportIncident(CityRescueImpl.java:240)
+	at cityrescue.CityRescueImpl.reportIncident(CityRescueImpl.java:250)
 	at PublicDispatchTest.dispatch_assignsClosestEligibleUnit_thenLowestUnitId(PublicDispatchTest.java:23)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
