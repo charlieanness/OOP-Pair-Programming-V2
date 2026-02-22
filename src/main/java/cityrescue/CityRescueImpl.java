@@ -278,12 +278,17 @@ public class CityRescueImpl implements CityRescue {
             assignedUnit.currentIncidentID = 999;
         }
         selectedIncident.setIncidentStatus(IncidentStatus.CANCELLED);
+        //dont need to remove from incidents array, just becomes cancelled
     }
 
     @Override
     public void escalateIncident(int incidentId, int newSeverity) throws IDNotRecognisedException, InvalidSeverityException, IllegalStateException {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (newSeverity < 1 || newSeverity > 5) {throw new InvalidSeverityException("Invalid severity!");}
+        
+        Incident selectedIncident = Incident.getIncidentFromID(incidents, incidentId);
+        if (selectedIncident.canBeEscalated() == false) {throw new IllegalStateException("Incident cannot be escalated!");}
+
+        selectedIncident.setSeverity(newSeverity);
     }
 
     @Override

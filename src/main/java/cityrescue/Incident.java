@@ -52,8 +52,19 @@ public class Incident {
         return ((incidentStatus != IncidentStatus.REPORTED) && (incidentStatus != IncidentStatus.DISPATCHED));
     }
 
+    public boolean canBeEscalated()
+    {
+        return ((incidentStatus != IncidentStatus.RESOLVED) && (incidentStatus != IncidentStatus.CANCELLED));
+    }
+
     public Unit getAssignedUnit()
     {
         return assignedUnit;
     }
+
+    public void setSeverity(int newSeverity)
+    {
+        severity = newSeverity;
+    }
+
 }
