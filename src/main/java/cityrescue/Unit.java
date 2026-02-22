@@ -28,6 +28,11 @@ public abstract class Unit {
         return this.unitStatus;
     }
 
+    protected void setUnitStatus(UnitStatus status)
+    {
+        unitStatus = status;
+    }
+
     protected static Unit getUnitFromID(Unit[] units, int unitID) throws IDNotRecognisedException
     {
         for (int i=0; i<units.length; i++)
@@ -38,6 +43,12 @@ public abstract class Unit {
             }
         }
         throw new IDNotRecognisedException("No unit with that ID exists!");
+    }
+
+    protected void moveCoordsToStation(Station newStation)
+    {
+        x = newStation.getX();
+        y = newStation.getY();
     }
 
     protected boolean isBusy()

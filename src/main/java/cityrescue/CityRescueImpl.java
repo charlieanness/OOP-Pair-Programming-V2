@@ -199,21 +199,27 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public void transferUnit(int unitId, int newStationId) throws IDNotRecognisedException, IllegalStateException {
-        Station newStation = Station.getStationFromID(stations, newStationId);
-
-        Unit selectedUnit = Unit.getUnitFromID(units, unitId);
-        if (selectedUnit.getUnitStatus() != UnitStatus.IDLE) {throw new IllegalStateException("Unit is not IDLE!");}
+        Unit selectedUnit = Unit.getUnitFromID(units, unitId); //finds unit
+        if (selectedUnit.getUnitStatus() != UnitStatus.IDLE) {throw new IllegalStateException("Unit is not IDLE!");} //checks idle
         
-        Station oldStation = Station.getStationFromID(stations, selectedUnit.getOwnerStationID());
+        Station oldStation = Station.getStationFromID(stations, selectedUnit.getOwnerStationID()); //ref to old station
+        Station newStation = Station.getStationFromID(stations, newStationId); //ref to new station
 
-        newStation.addUnitToStation(selectedUnit);
-        oldStation.removeUnitFromStation(selectedUnit);
+        newStation.addUnitToStation(selectedUnit); //adds to new station
+        oldStation.removeUnitFromStation(selectedUnit); //removes from old station
+
+        selectedUnit.moveCoordsToStation(newStation); //changes unit coords to new stations coords
     }
 
     @Override
     public void setUnitOutOfService(int unitId, boolean outOfService) throws IDNotRecognisedException, IllegalStateException {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        Unit selectedUnit = Unit.getUnitFromID(units, unitId);
+        if (outOfService)
+            {
+                if (selectedUnit.getUnitStatus() != UnitStatus.IDLE) {throw new IllegalStateException("Unit not IDLE, cannot become OUT_OF_SERVICE!");}
+                else {selectedUnit.setUnitStatus(UnitStatus.OUT_OF_SERVICE);}
+            }
+        else {selectedUnit.setUnitStatus(UnitStatus.IDLE);}
     }
 
     @Override
