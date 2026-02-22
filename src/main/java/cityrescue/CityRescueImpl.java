@@ -246,8 +246,24 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public int reportIncident(IncidentType type, int severity, int x, int y) throws InvalidSeverityException, InvalidLocationException {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (type == null) {throw new NullPointerException("Incident type is null!");} //just used nullpointerexception
+        if (severity < 1 || severity > 5) {throw new InvalidSeverityException("Invalid severity!");}
+        if (cityMap.isBlocked(x, y)) {throw new InvalidLocationException("Location is blocked!");}
+        if (x > cityMap.getWidth() || x < 0) {throw new InvalidLocationException("Invalid X location!");}
+        if (y > cityMap.getHeight() || y < 0) {throw new InvalidLocationException("Invalid Y location!");}
+        if (incidentCount == MAX_INCIDENTS) {throw new CapacityExceededException("Can't add another incident!");}
+
+        Incident newIncident = new Incident(nextIncidentID++, severity, x, y);
+        for (int i=0;i<incidents.length;i++)
+        {
+            if (incidents[i] != null)
+            {
+                incidents[i] = newIncident;
+                incidentCount++;
+                break;
+            }
+        }
+        return newIncident.getID();
     }
 
     @Override

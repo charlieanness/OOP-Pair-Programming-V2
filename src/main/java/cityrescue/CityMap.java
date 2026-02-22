@@ -41,6 +41,11 @@ public class CityMap {
         this.blocked[y][x] = false;
     }
 
+    public boolean isBlocked(int x, int y)
+    {
+        return blocked[x][y];
+    }
+
     public void clearObstacles() {
         for (int i=0; i<blocked.length; i++) {
             for (int j=0; i<blocked[i].length; i++) {
