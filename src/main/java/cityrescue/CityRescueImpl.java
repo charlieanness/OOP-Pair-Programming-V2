@@ -256,7 +256,7 @@ public class CityRescueImpl implements CityRescue {
         Incident newIncident = new Incident(nextIncidentID++, severity, x, y);
         for (int i=0;i<incidents.length;i++)
         {
-            if (incidents[i] != null)
+            if (incidents[i] == null)
             {
                 incidents[i] = newIncident;
                 incidentCount++;
@@ -273,7 +273,7 @@ public class CityRescueImpl implements CityRescue {
         
         if (selectedIncident.getIncidentStatus() == IncidentStatus.DISPATCHED)
         {
-            Unit assignedUnit = selectedIncident.getAssignedUnit();
+            Unit assignedUnit = Unit.getUnitFromID(units, selectedIncident.getAssignedUnitID()); //recently changed, could be wrong
             assignedUnit.unitStatus = UnitStatus.IDLE;
             assignedUnit.currentIncidentID = 999;
         }
@@ -309,7 +309,8 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public String viewIncident(int incidentId) throws IDNotRecognisedException {
-        if (CityMap.checkAllNull(incidents)) {return ("All incidents are null!");}
+        //may not be needed, need to ask - currently this check is only used here and not in viewUnits()
+        if (CityMap.isAllNull(incidents)) {throw new NullPointerException("Incidents array is all null, so cannot view");}
         else
         {
         Incident incident = Incident.getIncidentFromID(incidents, incidentId);

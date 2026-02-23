@@ -8,7 +8,7 @@ public class Incident {
     private IncidentType incidentType;
     private int incidentID;
     private int severity;
-    private Unit assignedUnit;
+    private int assignedUnitID;
     private int x;
     private int y;
 
@@ -18,6 +18,7 @@ public class Incident {
         this.severity = severity;
         this.x = x;
         this.y = y;
+        this.assignedUnitID = 999;
     }
 
     public int getID()
@@ -31,6 +32,9 @@ public class Incident {
         {
             if (incidents[i] != null)
             {
+                //for testing
+                //System.out.println("Incident Object found. ID is:" + incidents[i].getID() + ", looking for ID: "+incidentID);
+
                 if (incidents[i].getID() == incidentID)
                 {
                     return incidents[i];
@@ -60,9 +64,9 @@ public class Incident {
         return ((incidentStatus != IncidentStatus.RESOLVED) && (incidentStatus != IncidentStatus.CANCELLED));
     }
 
-    public Unit getAssignedUnit()
+    public int getAssignedUnitID()
     {
-        return assignedUnit;
+        return assignedUnitID;
     }
 
     public void setSeverity(int newSeverity)
@@ -74,12 +78,12 @@ public class Incident {
     {
         return
         (
-            "U#"+incidentID+
+            "I#"+incidentID+
             " TYPE="+incidentType+
             " SEVERITY="+severity+
             " LOC=("+x+","+y+")"+
             " STATUS="+incidentStatus+
-            " UNIT="+assignedUnit.getID()
+            " UNIT="+assignedUnitID
         );
     }
 

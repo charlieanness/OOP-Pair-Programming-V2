@@ -54,7 +54,7 @@ public class CityMap {
         }
     }
 
-    public static boolean checkAllNull(Object[] arr)
+    public static boolean isAllNull(Object[] arr)
     {
         for (int i=0; i<arr.length;i++)
         {
