@@ -293,14 +293,24 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public int[] getIncidentIds() {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        int[] ids = new int[incidentCount];
+        int pos = 0;
+        for (Incident incident : incidents)
+        {
+            if (incident != null)
+            {
+                ids[pos] = incident.getID();
+                pos++;
+            }
+        }
+        Arrays.sort(ids);
+        return ids;
     }
 
     @Override
     public String viewIncident(int incidentId) throws IDNotRecognisedException {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet");
+        Incident incident = Incident.getIncidentFromID(incidents, incidentId);
+        return incident.viewIncidentStats();
     }
 
     @Override

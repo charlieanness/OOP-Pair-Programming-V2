@@ -61,9 +61,12 @@ public class Station {
     {
         for (int i=0; i<stations.length; i++)
         {
-            if (stations[i].getID() == stationID)
+            if (stations[i] != null)
             {
-                return stations[i];
+                if (stations[i].getID() == stationID)
+                {
+                    return stations[i];
+                }
             }
         }
         throw new IDNotRecognisedException("No station with that ID exists!");

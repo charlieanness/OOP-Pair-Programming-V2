@@ -29,9 +29,12 @@ public class Incident {
     {
         for (int i=0; i<incidents.length; i++)
         {
-            if (incidents[i].getID() == incidentID)
+            if (incidents[i] != null)
             {
-                return incidents[i];
+                if (incidents[i].getID() == incidentID)
+                {
+                    return incidents[i];
+                }
             }
         }
         throw new IDNotRecognisedException("No incident with that ID exists!");
@@ -65,6 +68,19 @@ public class Incident {
     public void setSeverity(int newSeverity)
     {
         severity = newSeverity;
+    }
+
+    public String viewIncidentStats()
+    {
+        return
+        (
+            "U#"+incidentID+
+            " TYPE="+incidentType+
+            " SEVERITY="+severity+
+            " LOC=("+x+","+y+")"+
+            " STATUS="+incidentStatus+
+            " UNIT="+assignedUnit.getID()
+        );
     }
 
 }

@@ -53,9 +53,12 @@ public abstract class Unit {
     {
         for (int i=0; i<units.length; i++)
         {
-            if (units[i].getID() == unitID)
+            if (units[i] != null)
             {
-                return units[i];
+                if (units[i].getID() == unitID)
+                {
+                    return units[i];
+                }
             }
         }
         throw new IDNotRecognisedException("No unit with that ID exists!");
