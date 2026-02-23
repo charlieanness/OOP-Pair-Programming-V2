@@ -309,8 +309,12 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public String viewIncident(int incidentId) throws IDNotRecognisedException {
+        if (CityMap.checkAllNull(incidents)) {return ("All incidents are null!");}
+        else
+        {
         Incident incident = Incident.getIncidentFromID(incidents, incidentId);
         return incident.viewIncidentStats();
+        }
     }
 
     @Override
