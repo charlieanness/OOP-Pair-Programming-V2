@@ -32,9 +32,6 @@ public class Incident {
         {
             if (incidents[i] != null)
             {
-                //for testing
-                //System.out.println("Incident Object found. ID is:" + incidents[i].getID() + ", looking for ID: "+incidentID);
-
                 if (incidents[i].getID() == incidentID)
                 {
                     return incidents[i];

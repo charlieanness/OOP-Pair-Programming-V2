@@ -309,13 +309,8 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public String viewIncident(int incidentId) throws IDNotRecognisedException {
-        //may not be needed, need to ask - currently this check is only used here and not in viewUnits()
-        if (CityMap.isAllNull(incidents)) {throw new NullPointerException("Incidents array is all null, so cannot view");}
-        else
-        {
         Incident incident = Incident.getIncidentFromID(incidents, incidentId);
         return incident.viewIncidentStats();
-        }
     }
 
     @Override
