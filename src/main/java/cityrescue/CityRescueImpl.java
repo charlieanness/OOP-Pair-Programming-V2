@@ -315,7 +315,12 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public void dispatch() {
-        // TODO: implement
+        //Incident[] sortedIncidents = Incident.getSortedIncidents(incidents, incidentCount, getIncidentIds());
+        //Incident[] reportedIncidents = Incident.getReportedIncidents(sortedIncidents); //gets reported incidents in ID order
+
+        //Incident incident = null; //null for now
+        //Unit bestUnit = Unit.getBestUnit(units, unitCount, getUnitIds(), incident); //no incident to pass in yet
+
         throw new UnsupportedOperationException("Not implemented yet");
     }
 

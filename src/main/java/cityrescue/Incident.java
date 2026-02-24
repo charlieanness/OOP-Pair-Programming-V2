@@ -51,6 +51,21 @@ public class Incident {
         incidentStatus = status;
     }
 
+    public IncidentType getIncidentType()
+    {
+        return incidentType;
+    }
+
+    public int getX()
+    {
+        return x;
+    }
+
+    public int getY()
+    {
+        return y;
+    }
+
     public boolean canBeCancelled()
     {
         return ((incidentStatus != IncidentStatus.REPORTED) && (incidentStatus != IncidentStatus.DISPATCHED));
@@ -82,6 +97,51 @@ public class Incident {
             " STATUS="+incidentStatus+
             " UNIT="+assignedUnitID
         );
+    }
+
+    public static Incident[] getSortedIncidents(Incident[] incidents, int incidentCount, int[] sortedIDs) throws IDNotRecognisedException
+    {
+        Incident[] sortedIncidents = new Incident[incidentCount];
+        int pos = 0;
+        
+        for (int i=0; i<sortedIDs.length; i++)
+        {
+            Incident incident = Incident.getIncidentFromID(incidents, sortedIDs[i]);
+            sortedIncidents[pos] = incident;
+            pos++;
+        }
+
+        return sortedIncidents;
+    }
+
+    public static Incident[] getReportedIncidents(Incident[] incidents)
+    {
+        Incident[] reportedIncidents = new Incident[countReportedIncidents(incidents)];
+        int pos = 0;
+
+        for (int i=0; i<incidents.length;i++)
+        {
+            if (incidents[i].getIncidentStatus() == IncidentStatus.REPORTED)
+            {
+                reportedIncidents[pos] = incidents[i];
+            }
+        }
+        return reportedIncidents;
+    }
+
+    public static int countReportedIncidents(Incident[] incidents)
+    {
+        int count = 0;
+
+        for (int i=0; i<incidents.length; i++)
+        {
+            if (incidents[i].getIncidentStatus() == IncidentStatus.REPORTED)
+            {
+                count++;
+            }
+        }
+
+        return count;
     }
 
 }
