@@ -138,18 +138,41 @@ public abstract class Unit {
 
     public static Unit getBestUnit(Unit[] units, int unitCount, int[] sortedIDs, Incident incident) throws IDNotRecognisedException
     {
-        Unit[] eligibleUnits = Unit.getEligibleUnits(units, unitCount, sortedIDs, incident);
-        Unit bestUnit;
-        int minDist = 10000;
+        Unit[] eligibleUnits = Unit.getEligibleUnits(units, unitCount, sortedIDs, incident); //gets all eligible units
+        Unit bestUnit = eligibleUnits[0]; //best unit is defaultly set to the first one
 
-        for (Unit unit : eligibleUnits)
+        //if there is only 1 eligible unit, return it
+        if (eligibleUnits.length == 1) {return bestUnit;}
+
+        //iterate through list, comparing best with each unit, updating bestUnit to the better one out of the comparison
+        for (int i=1;i<eligibleUnits.length;i++)
         {
-            if (unit != null)
+            if (eligibleUnits[i] != null)
             {
-                int dist = CityMap.calculateManhattanDistance(unit.getX(), unit.getY(), incident.getX(), incident.getY());
+                //applies all three tiebreakers to return best unit out of the two
+                bestUnit = applyTieBreaker(bestUnit, eligibleUnits[i], incident);
             }
         }
-        return null; //temporary
+
+        return bestUnit;
+    }
+
+    public static Unit applyTieBreaker(Unit unit1, Unit unit2, Incident incident)
+    {
+        int unit1Dist = CityMap.calculateManhattanDistance(unit1.getX(), unit1.getY(), incident.getX(), incident.getY());
+        int unit2Dist = CityMap.calculateManhattanDistance(unit2.getX(), unit2.getY(), incident.getX(), incident.getY());
+
+        if (unit1Dist < unit2Dist) {return unit1;}
+        if (unit2Dist < unit1Dist) {return unit2;}
+
+        //continues to here if dists are equal
+        if (unit1.getID() < unit2.getID()) {return unit1;}
+        if (unit2.getID() < unit1.getID()) {return unit2;}
+
+        //continues here if IDs are equal
+        if (unit1.getOwnerStationID() < unit2.getOwnerStationID()) {return unit1;}
+        else {return unit2;}
+
     }
     
 }
