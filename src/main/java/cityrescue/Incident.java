@@ -81,6 +81,11 @@ public class Incident {
         return assignedUnitID;
     }
 
+    public void setAssignedUnitID(int id)
+    {
+        assignedUnitID = id;
+    }
+
     public void setSeverity(int newSeverity)
     {
         severity = newSeverity;

@@ -315,11 +315,25 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public void dispatch() {
-        //Incident[] sortedIncidents = Incident.getSortedIncidents(incidents, incidentCount, getIncidentIds());
-        //Incident[] reportedIncidents = Incident.getReportedIncidents(sortedIncidents); //gets reported incidents in ID order
 
-        //Incident incident = null; //null for now
-        //Unit bestUnit = Unit.getBestUnit(units, unitCount, getUnitIds(), incident); //no incident to pass in yet
+        try
+        {
+            Incident[] sortedIncidents = Incident.getSortedIncidents(incidents, incidentCount, getIncidentIds());
+            Incident[] reportedIncidents = Incident.getReportedIncidents(sortedIncidents); //gets reported incidents in ID order
+            for (Incident incident : reportedIncidents)
+            {
+                if (incident == null) {continue;}
+                
+                Unit bestUnit = Unit.getBestUnit(units, unitCount, getUnitIds(), incident);
+
+                bestUnit.setCurrentIncidentID(incident.getID());
+                bestUnit.setUnitStatus(UnitStatus.EN_ROUTE);
+
+                incident.setAssignedUnitID(bestUnit.getID());
+                incident.setIncidentStatus(IncidentStatus.DISPATCHED);
+            }
+        }
+        catch (Exception e) {System.out.println("An error has occurred: " + e);}
 
         throw new UnsupportedOperationException("Not implemented yet");
     }

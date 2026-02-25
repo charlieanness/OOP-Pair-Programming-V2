@@ -45,6 +45,11 @@ public abstract class Unit {
         return currentIncidentID;
     }
 
+    protected void setCurrentIncidentID(int id)
+    {
+        currentIncidentID = id;
+    }
+
     protected int getX()
     {
         return x;
