@@ -1,7 +1,5 @@
 package cityrescue;
 
-import cityrescue.exceptions.*;
-
 public class CityMap {
 
     private boolean[][] blocked;

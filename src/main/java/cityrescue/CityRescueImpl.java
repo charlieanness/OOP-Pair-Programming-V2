@@ -253,7 +253,7 @@ public class CityRescueImpl implements CityRescue {
         if (y > cityMap.getHeight() || y < 0) {throw new InvalidLocationException("Invalid Y location!");}
         if (incidentCount == MAX_INCIDENTS) {throw new CapacityExceededException("Can't add another incident!");}
 
-        Incident newIncident = new Incident(nextIncidentID++, severity, x, y);
+        Incident newIncident = new Incident(nextIncidentID++, type, severity, x, y);
         for (int i=0;i<incidents.length;i++)
         {
             if (incidents[i] == null)

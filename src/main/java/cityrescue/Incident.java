@@ -12,13 +12,15 @@ public class Incident {
     private int x;
     private int y;
 
-    public Incident(int id, int severity, int x, int y)
+    public Incident(int id, IncidentType type, int severity, int x, int y)
     {
         this.incidentID = id;
+        this.incidentType = type;
         this.severity = severity;
         this.x = x;
         this.y = y;
         this.assignedUnitID = 999;
+        this.incidentStatus = IncidentStatus.REPORTED;
     }
 
     public int getID()
