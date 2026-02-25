@@ -19,4 +19,5 @@ cityrescue/enums/IncidentType.class
 cityrescue/CityMap.class
 cityrescue/CityRescueImpl.class
 cityrescue/Incident.class
+cityrescue/temporaryTesting.class
 cityrescue/exceptions/CapacityExceededException.class

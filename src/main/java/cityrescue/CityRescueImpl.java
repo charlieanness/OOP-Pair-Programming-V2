@@ -322,7 +322,7 @@ public class CityRescueImpl implements CityRescue {
             Incident[] reportedIncidents = Incident.getReportedIncidents(sortedIncidents); //gets reported incidents in ID order
             for (Incident incident : reportedIncidents)
             {
-                if (incident == null) {continue;}
+                if (incident == null) {continue;} //skips loop if its null
                 
                 Unit bestUnit = Unit.getBestUnit(units, unitCount, getUnitIds(), incident);
 
@@ -334,8 +334,6 @@ public class CityRescueImpl implements CityRescue {
             }
         }
         catch (Exception e) {System.out.println("An error has occurred: " + e);}
-
-        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     @Override

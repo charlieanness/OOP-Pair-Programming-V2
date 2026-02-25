@@ -131,7 +131,7 @@ public abstract class Unit {
             //if it is out of service, ignore it
             if (unit.getUnitStatus() == UnitStatus.OUT_OF_SERVICE) {continue;}
 
-            //if it is not already assigned an incident, ignore it
+            //if it is already assigned an incident, ignore it
             if (unit.getCurrentIncidentID() != 999) {continue;}
 
             //it must be eligible
@@ -146,9 +146,6 @@ public abstract class Unit {
         Unit[] eligibleUnits = Unit.getEligibleUnits(units, unitCount, sortedIDs, incident); //gets all eligible units
         Unit bestUnit = eligibleUnits[0]; //best unit is defaultly set to the first one
 
-        //if there is only 1 eligible unit, return it
-        if (eligibleUnits.length == 1) {return bestUnit;}
-
         //iterate through list, comparing best with each unit, updating bestUnit to the better one out of the comparison
         for (int i=1;i<eligibleUnits.length;i++)
         {
@@ -158,7 +155,6 @@ public abstract class Unit {
                 bestUnit = applyTieBreaker(bestUnit, eligibleUnits[i], incident);
             }
         }
-
         return bestUnit;
     }
 

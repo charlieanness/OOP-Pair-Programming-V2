@@ -129,6 +129,7 @@ public class Incident {
             if (incidents[i].getIncidentStatus() == IncidentStatus.REPORTED)
             {
                 reportedIncidents[pos] = incidents[i];
+                pos++;
             }
         }
         return reportedIncidents;
