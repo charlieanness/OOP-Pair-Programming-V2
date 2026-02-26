@@ -338,7 +338,52 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public void tick() {
-        // TODO: implement
+        //increment tick
+        currentTick++;
+        
+        //move EN_ROUTE units
+        try
+        {
+            Unit[] sortedUnits = Unit.getSortedUnits(units, unitCount, getUnitIds());
+            Unit[] enRouteUnits = new Unit[sortedUnits.length];
+            int pos = 0;
+
+            //get en route units into an array
+            for (Unit unit : sortedUnits)
+            {
+                if (unit == null) {continue;} //i think sortedunits has no nulls, so maybe not necessary
+                
+                if (unit.isEnRoute())
+                {
+                    enRouteUnits[pos] = unit;
+                    pos++;
+                }
+            }
+
+            //resolve completed incidents
+
+            //process on-scene work
+
+            for (Unit unit : enRouteUnits)
+            {
+                Incident incident = Incident.getIncidentFromID(incidents, unit.getCurrentIncidentID());
+                cityMap.applyMovementRule(unit, incident);
+
+
+                //mark arrivals
+                if (unit.hasArrived(incident))
+                {
+                    unit.setUnitStatus(UnitStatus.AT_SCENE);
+                    incident.setIncidentStatus(IncidentStatus.IN_PROGRESS);
+                }
+            }
+
+
+
+        }
+        catch (Exception e) {System.out.println("An error has occurred: " + e);}
+
+
         throw new UnsupportedOperationException("Not implemented yet");
     }
 

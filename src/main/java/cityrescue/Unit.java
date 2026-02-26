@@ -52,6 +52,11 @@ public abstract class Unit {
         currentIncidentID = id;
     }
 
+    protected void doWork()
+    {
+        currentIncidentWork++;
+    }
+
     protected int getX()
     {
         return x;
@@ -60,6 +65,17 @@ public abstract class Unit {
     protected int getY()
     {
         return y;
+    }
+
+    protected void move(int x, int y)
+    {
+        this.x += x;
+        this.y += y;
+    }
+
+    protected boolean hasArrived(Incident incident)
+    {
+        return ((x == incident.getX()) && (y == incident.getY()));
     }
 
     protected String viewUnitStats()
@@ -95,6 +111,11 @@ public abstract class Unit {
     {
         x = newStation.getX();
         y = newStation.getY();
+    }
+
+    protected boolean isEnRoute()
+    {
+        return (unitStatus == UnitStatus.EN_ROUTE);
     }
 
     protected boolean isBusy()
