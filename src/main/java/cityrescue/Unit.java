@@ -13,9 +13,9 @@ public abstract class Unit {
     protected int currentIncidentID;
     protected int currentIncidentWork;
 
-    protected abstract boolean canHandle(IncidentType type); //possibly not needed
+    protected abstract boolean canHandle(IncidentType type); //i should use this in getEligibleUnits()
 
-    //protected abstract int getTicksToResolve(int severity); need to implement this and also in children class
+    protected abstract int getTicksToResolve(int severity);
 
     protected int getID()
     {
@@ -125,10 +125,13 @@ public abstract class Unit {
         Unit[] sortedUnits = getSortedUnits(units, unitCount, sortedIDs);
         for (Unit unit : sortedUnits)
         {
-            //if its type does not match the incident, then ignore it //maybe change this bit to use abstract method
-            if (unit.getUnitType() == UnitType.AMBULANCE && incident.getIncidentType() != IncidentType.MEDICAL) {continue;}
-            if (unit.getUnitType() == UnitType.FIRE_ENGINE && incident.getIncidentType() != IncidentType.FIRE) {continue;}
-            if (unit.getUnitType() == UnitType.POLICE_CAR && incident.getIncidentType() != IncidentType.CRIME) {continue;}
+            //replaced by canHandle() check below
+            // if (unit.getUnitType() == UnitType.AMBULANCE && incident.getIncidentType() != IncidentType.MEDICAL) {continue;}
+            // if (unit.getUnitType() == UnitType.FIRE_ENGINE && incident.getIncidentType() != IncidentType.FIRE) {continue;}
+            // if (unit.getUnitType() == UnitType.POLICE_CAR && incident.getIncidentType() != IncidentType.CRIME) {continue;}
+
+            //if its type does not match the incident, then ignore it
+            if (unit.canHandle(incident.getIncidentType()) == false) {continue;}
 
             //if it is out of service, ignore it
             if (unit.getUnitStatus() == UnitStatus.OUT_OF_SERVICE) {continue;}

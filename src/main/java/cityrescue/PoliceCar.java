@@ -21,4 +21,10 @@ public class PoliceCar extends Unit{
     {
         return (type == IncidentType.CRIME);
     }
+
+    @Override
+    public int getTicksToResolve(int severity)
+    {
+        return 3;
+    }
 }

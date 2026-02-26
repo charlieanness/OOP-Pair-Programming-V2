@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: PublicBasicsTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.034 s <<< FAILURE! -- in PublicBasicsTest
-PublicBasicsTest.addObstacle_outOfBounds_throws_andStateUnchanged -- Time elapsed: 0.004 s <<< ERROR!
+Tests run: 3, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.066 s <<< FAILURE! -- in PublicBasicsTest
+PublicBasicsTest.addObstacle_outOfBounds_throws_andStateUnchanged -- Time elapsed: 0.022 s <<< ERROR!
 java.lang.UnsupportedOperationException: Not implemented yet
 	at cityrescue.CityRescueImpl.getStatus(CityRescueImpl.java:348)
 	at PublicBasicsTest.addObstacle_outOfBounds_throws_andStateUnchanged(PublicBasicsTest.java:34)
@@ -10,7 +10,7 @@ java.lang.UnsupportedOperationException: Not implemented yet
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-PublicBasicsTest.initialise_setsGridSize_andResetsTick -- Time elapsed: 0.008 s <<< ERROR!
+PublicBasicsTest.initialise_setsGridSize_andResetsTick -- Time elapsed: 0.010 s <<< ERROR!
 java.lang.UnsupportedOperationException: Not implemented yet
 	at cityrescue.CityRescueImpl.getStatus(CityRescueImpl.java:348)
 	at PublicBasicsTest.initialise_setsGridSize_andResetsTick(PublicBasicsTest.java:21)

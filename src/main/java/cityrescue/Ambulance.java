@@ -21,4 +21,10 @@ public class Ambulance extends Unit{
     {
         return (type == IncidentType.MEDICAL);
     }
+
+    @Override
+    public int getTicksToResolve(int severity)
+    {
+        return 2;
+    }
 }
