@@ -22,4 +22,6 @@ public class FireEngine extends Unit{
         return (type == IncidentType.FIRE);
     }
 
+    
+
 }
