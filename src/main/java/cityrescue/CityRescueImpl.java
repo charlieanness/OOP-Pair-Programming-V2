@@ -428,14 +428,34 @@ public class CityRescueImpl implements CityRescue {
     public String getStatus() {
         String counts = cityMap.countsToString(stationCount, unitCount, incidentCount); //index error with countsToString
         String tick = "TICK="+currentTick+"\n";
-        String allIncidentsString;
-        String allUnitsString;
+        String allIncidentsString = new String();
+        String allUnitsString = new String();
+        try
+        {
+            for (Incident incident : incidents)
+            {
+                if (incident == null) {continue;}
+
+                allIncidentsString += viewIncident(incident.getID()) + "\n";
+            }
+
+            for (Unit unit : units)
+            {
+                if (unit == null) {continue;}
+
+                allUnitsString += viewUnit(unit.getID()) + "\n";
+            }
+        }
+        catch (Exception e) {System.out.println("An ID error has occurred in getStatus(): " + e);}
 
         // return
         // (
         //     counts + "\n" +
         //     "TICK="+currentTick + "\n" +
-        //     "INCIDENTS" + "\n"
+        //     "INCIDENTS" + "\n" +
+        //     allIncidents + "\n" +
+        //     "UNITS" + "\n" +
+        //     allUnits + "\n"
         //     //need to continue here
         // );
 
