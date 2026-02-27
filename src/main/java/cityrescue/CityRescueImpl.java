@@ -349,10 +349,12 @@ public class CityRescueImpl implements CityRescue {
             {
                 if (incident == null) {continue;}
 
-                Unit assignedUnit = Unit.getUnitFromID(units, incident.getAssignedUnitID());
+                //used to get assignedUnit here, but could potentially error, so moved it down
 
                 if (incident.getIncidentStatus() == IncidentStatus.IN_PROGRESS)
                 {
+                    Unit assignedUnit = Unit.getUnitFromID(units, incident.getAssignedUnitID());
+
                     //process on-scene work
                     if (assignedUnit.getCurrentIncidentWork() < assignedUnit.getTicksToResolve())
                     {
@@ -371,15 +373,7 @@ public class CityRescueImpl implements CityRescue {
                     }
                 }
 
-                if (incident.getIncidentStatus() == IncidentStatus.DISPATCHED)
-                {
-                    //mark arrivals
-                    if (assignedUnit.hasArrived(incident))
-                    {
-                        assignedUnit.setUnitStatus(UnitStatus.AT_SCENE);
-                        incident.setIncidentStatus(IncidentStatus.IN_PROGRESS);
-                    }
-                }
+                //used to have mark arrivals check here, now its executed after units are moved
             }
 
             //move en-route units
@@ -406,6 +400,26 @@ public class CityRescueImpl implements CityRescue {
                 Incident incident = Incident.getIncidentFromID(incidents, unit.getCurrentIncidentID());
                 cityMap.applyMovementRule(unit, incident);
             }
+
+            //mark arrivals, have to go through sortedIncidents again so its in ID order
+            sortedIncidents = Incident.getSortedIncidents(incidents, incidentCount, getIncidentIds());
+            for (Incident incident : sortedIncidents)
+            {
+                if (incident == null) {continue;}
+
+                if (incident.getIncidentStatus() == IncidentStatus.DISPATCHED)
+                {
+                    Unit assignedUnit = Unit.getUnitFromID(units, incident.getAssignedUnitID());
+
+                    //mark arrivals
+                    if (assignedUnit.hasArrived(incident))
+                    {
+                        assignedUnit.setUnitStatus(UnitStatus.AT_SCENE);
+                        incident.setIncidentStatus(IncidentStatus.IN_PROGRESS);
+                    }
+                }
+            }
+
         }
         catch (Exception e) {System.out.println("An error has occurred: " + e);}
     }
