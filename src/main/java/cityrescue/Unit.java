@@ -15,7 +15,7 @@ public abstract class Unit {
 
     protected abstract boolean canHandle(IncidentType type); //i should use this in getEligibleUnits()
 
-    protected abstract int getTicksToResolve(int severity);
+    protected abstract int getTicksToResolve();
 
     protected int getID()
     {
@@ -50,6 +50,11 @@ public abstract class Unit {
     protected void setCurrentIncidentID(int id)
     {
         currentIncidentID = id;
+    }
+
+    protected int getCurrentIncidentWork()
+    {
+        return currentIncidentWork;
     }
 
     protected void doWork()

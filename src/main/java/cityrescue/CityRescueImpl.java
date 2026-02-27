@@ -341,7 +341,6 @@ public class CityRescueImpl implements CityRescue {
         //increment tick
         currentTick++;
         
-        //move EN_ROUTE units
         try
         {
             Unit[] sortedUnits = Unit.getSortedUnits(units, unitCount, getUnitIds());
@@ -361,30 +360,52 @@ public class CityRescueImpl implements CityRescue {
             }
 
             //resolve completed incidents
-
-            //process on-scene work
-
-            for (Unit unit : enRouteUnits)
+            Incident[] sortedIncidents = Incident.getSortedIncidents(incidents, incidentCount, getIncidentIds());
+            for (Incident incident : sortedIncidents)
             {
-                Incident incident = Incident.getIncidentFromID(incidents, unit.getCurrentIncidentID());
-                cityMap.applyMovementRule(unit, incident);
+                if (incident == null) {continue;}
 
+                Unit assignedUnit = Unit.getUnitFromID(units, incident.getAssignedUnitID());
 
-                //mark arrivals
-                if (unit.hasArrived(incident))
+                if (incident.getIncidentStatus() == IncidentStatus.IN_PROGRESS)
                 {
-                    unit.setUnitStatus(UnitStatus.AT_SCENE);
-                    incident.setIncidentStatus(IncidentStatus.IN_PROGRESS);
+                    //resolving completed incidents
+                    if (assignedUnit.getCurrentIncidentWork() == assignedUnit.getTicksToResolve())
+                    {
+                        //unit has completed incident, resetting stats for unit and resolving incident
+                        incident.setIncidentStatus(IncidentStatus.RESOLVED);
+                        incident.setAssignedUnitID(999); //just to ensure it is not atttached to unit anymore
+                        assignedUnit.currentIncidentWork = 0;
+                        assignedUnit.currentIncidentID = 999;
+                        assignedUnit.unitStatus = UnitStatus.IDLE;
+                    }
+
+                    //process on-scene work
+                    if (assignedUnit.getCurrentIncidentWork() < assignedUnit.getTicksToResolve())
+                    {
+                        assignedUnit.doWork();
+                    }
+                }
+
+                if (incident.getIncidentStatus() == IncidentStatus.DISPATCHED)
+                {
+                    //mark arrivals
+                    if (assignedUnit.hasArrived(incident))
+                    {
+                        assignedUnit.setUnitStatus(UnitStatus.AT_SCENE);
+                        incident.setIncidentStatus(IncidentStatus.IN_PROGRESS);
+                    }
                 }
             }
 
-
-
+            //move en-route units
+            for (Unit unit : enRouteUnits) 
+            {
+                Incident incident = Incident.getIncidentFromID(incidents, unit.getCurrentIncidentID());
+                cityMap.applyMovementRule(unit, incident);
+            }
         }
         catch (Exception e) {System.out.println("An error has occurred: " + e);}
-
-
-        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     @Override
