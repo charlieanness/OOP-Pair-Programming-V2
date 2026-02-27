@@ -46,10 +46,26 @@ public class CityMap {
 
     public void clearObstacles() {
         for (int i=0; i<blocked.length; i++) {
-            for (int j=0; i<blocked[i].length; i++) {
+            for (int j=0; j<blocked[i].length; j++) {
                 blocked[i][j] = false;
             }
         }
+    }
+
+    public int countObstacles()
+    {
+        int count = 0;
+
+        for (int i=0; i<blocked.length; i++) {
+            for (int j=0; j<blocked[i].length; j++) {
+                if (blocked[i][j])
+                {
+                    count++;
+                }
+            }
+        }
+
+        return count;
     }
 
     public static boolean isAllNull(Object[] arr)
@@ -121,6 +137,16 @@ public class CityMap {
         else {return false;}
     }
 
+    public String countsToString(int stationCount, int unitCount, int incidentCount)
+    {
+        return
+        (
+            "STATIONS="+stationCount+
+            " UNITS="+unitCount+
+            " INCIDENTS="+incidentCount+
+            " OBSTACLES="+countObstacles()
+        );
+    }
     
 }
 

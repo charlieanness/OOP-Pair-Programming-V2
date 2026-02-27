@@ -426,7 +426,19 @@ public class CityRescueImpl implements CityRescue {
 
     @Override
     public String getStatus() {
-        // TODO: implement
+        String counts = cityMap.countsToString(stationCount, unitCount, incidentCount); //index error with countsToString
+        String tick = "TICK="+currentTick+"\n";
+        String allIncidentsString;
+        String allUnitsString;
+
+        // return
+        // (
+        //     counts + "\n" +
+        //     "TICK="+currentTick + "\n" +
+        //     "INCIDENTS" + "\n"
+        //     //need to continue here
+        // );
+
         throw new UnsupportedOperationException("Not implemented yet");
     }
 }
