@@ -456,9 +456,6 @@ public class CityRescueImpl implements CityRescue {
             allIncidentsString + "\n" +
             "UNITS" + "\n" +
             allUnitsString + "\n"
-            //need to continue here
         );
-
-        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

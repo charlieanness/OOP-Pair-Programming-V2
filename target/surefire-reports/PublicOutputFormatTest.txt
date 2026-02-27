@@ -1,12 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: PublicOutputFormatTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.159 s <<< FAILURE! -- in PublicOutputFormatTest
-PublicOutputFormatTest.getStatus_containsRequiredHeadings -- Time elapsed: 0.070 s <<< ERROR!
-java.lang.UnsupportedOperationException: Not implemented yet
-	at cityrescue.CityRescueImpl.getStatus(CityRescueImpl.java:442)
-	at PublicOutputFormatTest.getStatus_containsRequiredHeadings(PublicOutputFormatTest.java:19)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.136 s -- in PublicOutputFormatTest
