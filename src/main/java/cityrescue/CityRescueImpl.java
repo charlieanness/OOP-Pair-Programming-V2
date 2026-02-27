@@ -448,16 +448,16 @@ public class CityRescueImpl implements CityRescue {
         }
         catch (Exception e) {System.out.println("An ID error has occurred in getStatus(): " + e);}
 
-        // return
-        // (
-        //     counts + "\n" +
-        //     "TICK="+currentTick + "\n" +
-        //     "INCIDENTS" + "\n" +
-        //     allIncidents + "\n" +
-        //     "UNITS" + "\n" +
-        //     allUnits + "\n"
-        //     //need to continue here
-        // );
+        return
+        (
+            counts + "\n" +
+            "TICK="+currentTick + "\n" +
+            "INCIDENTS" + "\n" +
+            allIncidentsString + "\n" +
+            "UNITS" + "\n" +
+            allUnitsString + "\n"
+            //need to continue here
+        );
 
         throw new UnsupportedOperationException("Not implemented yet");
     }
