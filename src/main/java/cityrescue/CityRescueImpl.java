@@ -343,6 +343,46 @@ public class CityRescueImpl implements CityRescue {
         
         try
         {
+            //resolve completed incidents
+            Incident[] sortedIncidents = Incident.getSortedIncidents(incidents, incidentCount, getIncidentIds());
+            for (Incident incident : sortedIncidents)
+            {
+                if (incident == null) {continue;}
+
+                Unit assignedUnit = Unit.getUnitFromID(units, incident.getAssignedUnitID());
+
+                if (incident.getIncidentStatus() == IncidentStatus.IN_PROGRESS)
+                {
+                    //process on-scene work
+                    if (assignedUnit.getCurrentIncidentWork() < assignedUnit.getTicksToResolve())
+                    {
+                        assignedUnit.doWork();
+                    }
+
+                    //resolving completed incidents
+                    if (assignedUnit.getCurrentIncidentWork() == assignedUnit.getTicksToResolve())
+                    {
+                        //unit has completed incident, resetting stats for unit and resolving incident
+                        incident.setIncidentStatus(IncidentStatus.RESOLVED);
+                        incident.setAssignedUnitID(999); //just to ensure it is not atttached to unit anymore
+                        assignedUnit.currentIncidentWork = 0;
+                        assignedUnit.currentIncidentID = 999;
+                        assignedUnit.unitStatus = UnitStatus.IDLE;
+                    }
+                }
+
+                if (incident.getIncidentStatus() == IncidentStatus.DISPATCHED)
+                {
+                    //mark arrivals
+                    if (assignedUnit.hasArrived(incident))
+                    {
+                        assignedUnit.setUnitStatus(UnitStatus.AT_SCENE);
+                        incident.setIncidentStatus(IncidentStatus.IN_PROGRESS);
+                    }
+                }
+            }
+
+            //move en-route units
             Unit[] sortedUnits = Unit.getSortedUnits(units, unitCount, getUnitIds());
             Unit[] enRouteUnits = new Unit[sortedUnits.length];
             int pos = 0;
@@ -359,48 +399,10 @@ public class CityRescueImpl implements CityRescue {
                 }
             }
 
-            //resolve completed incidents
-            Incident[] sortedIncidents = Incident.getSortedIncidents(incidents, incidentCount, getIncidentIds());
-            for (Incident incident : sortedIncidents)
-            {
-                if (incident == null) {continue;}
-
-                Unit assignedUnit = Unit.getUnitFromID(units, incident.getAssignedUnitID());
-
-                if (incident.getIncidentStatus() == IncidentStatus.IN_PROGRESS)
-                {
-                    //resolving completed incidents
-                    if (assignedUnit.getCurrentIncidentWork() == assignedUnit.getTicksToResolve())
-                    {
-                        //unit has completed incident, resetting stats for unit and resolving incident
-                        incident.setIncidentStatus(IncidentStatus.RESOLVED);
-                        incident.setAssignedUnitID(999); //just to ensure it is not atttached to unit anymore
-                        assignedUnit.currentIncidentWork = 0;
-                        assignedUnit.currentIncidentID = 999;
-                        assignedUnit.unitStatus = UnitStatus.IDLE;
-                    }
-
-                    //process on-scene work
-                    if (assignedUnit.getCurrentIncidentWork() < assignedUnit.getTicksToResolve())
-                    {
-                        assignedUnit.doWork();
-                    }
-                }
-
-                if (incident.getIncidentStatus() == IncidentStatus.DISPATCHED)
-                {
-                    //mark arrivals
-                    if (assignedUnit.hasArrived(incident))
-                    {
-                        assignedUnit.setUnitStatus(UnitStatus.AT_SCENE);
-                        incident.setIncidentStatus(IncidentStatus.IN_PROGRESS);
-                    }
-                }
-            }
-
-            //move en-route units
             for (Unit unit : enRouteUnits) 
             {
+                if (unit == null) {continue;}
+
                 Incident incident = Incident.getIncidentFromID(incidents, unit.getCurrentIncidentID());
                 cityMap.applyMovementRule(unit, incident);
             }

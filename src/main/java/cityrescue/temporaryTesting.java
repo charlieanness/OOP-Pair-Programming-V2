@@ -10,18 +10,20 @@ public class temporaryTesting {
     {
         CityRescue cr;
         cr = new CityRescueImpl();
-        cr.initialise(6, 6);
+        cr.initialise(5, 5);
 
         int s = cr.addStation("A", 0, 0);
-        int u1 = cr.addUnit(s, UnitType.POLICE_CAR);
-        int u2 = cr.addUnit(s, UnitType.POLICE_CAR);
+        int u = cr.addUnit(s, UnitType.AMBULANCE);
 
-        int i1 = cr.reportIncident(IncidentType.CRIME, 2, 2, 2);
-
+        int i = cr.reportIncident(IncidentType.MEDICAL, 1, 0, 1);
         cr.dispatch();
 
-        String inc = cr.viewIncident(i1);
+        cr.tick(); // should arrive at (0,1) in one tick
+        System.out.println(cr.viewUnit(u));
 
-        System.out.println(inc);
+        cr.tick();
+        cr.tick();
+        System.out.println(cr.viewIncident(i)); //should say status resolved
+        System.out.println(cr.viewUnit(u)); //should say status idle
     }
 }

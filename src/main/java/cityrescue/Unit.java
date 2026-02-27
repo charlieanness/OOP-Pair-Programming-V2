@@ -93,7 +93,7 @@ public abstract class Unit {
             " LOC=("+x+","+y+")"+
             " STATUS="+unitStatus+
             " INCIDENT="+currentIncidentID+
-            " WORK ="+currentIncidentWork
+            " WORK="+currentIncidentWork //removed a space before =
         );
     }
 
