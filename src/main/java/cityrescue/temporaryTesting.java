@@ -12,18 +12,14 @@ public class temporaryTesting {
         cr = new CityRescueImpl();
         cr.initialise(5, 5);
 
-        int s = cr.addStation("A", 0, 0);
-        int u = cr.addUnit(s, UnitType.AMBULANCE);
+        int[] sz = cr.getGridSize();
 
-        int i = cr.reportIncident(IncidentType.MEDICAL, 1, 0, 1);
-        cr.dispatch();
+        cr.addObstacle(1,1);
+        cr.addStation("A", 2, 3);
+        cr.addUnit(1, UnitType.AMBULANCE);
+        cr.reportIncident(IncidentType.CRIME, 3, 3, 3);
 
-        cr.tick(); // should arrive at (0,1) in one tick
-        System.out.println(cr.viewUnit(u));
-
-        cr.tick();
-        cr.tick();
-        System.out.println(cr.viewIncident(i)); //should say status resolved
-        System.out.println(cr.viewUnit(u)); //should say status idle
+        System.out.println(sz);
+        System.out.println(cr.getStatus());
     }
 }
