@@ -115,7 +115,7 @@ public class CityRescueImpl implements CityRescue {
         //iterate through stations
         for (int i=0; i<stations.length; i++)
         {
-            if (stations[i].getID() == stationId) //if stationID matches the specified one
+            if ((stations[i] != null) && (stations[i].getID() == stationId)) //if stationID matches the specified one
             {
                 if (stations[i].getUnitCount() == 0) //if it doesnt have any units left, then it can be removed
                 {
@@ -125,7 +125,7 @@ public class CityRescueImpl implements CityRescue {
                 } 
                 else {throw new IllegalStateException("This station still has units!");} //if it still has units, it cannot be removed
             }
-            //check for exception if id never found
+            //check for exception if ID never found
             if (i == MAX_STATIONS-1) {throw new IDNotRecognisedException("No station with that ID exists!");}
         }
     }
@@ -206,15 +206,18 @@ public class CityRescueImpl implements CityRescue {
 
         for (int i=0; i<units.length; i++) //find required unit by ID
         {
-            if (units[i].getID() == unitId)
+            if (units[i] != null) //check unit not null
             {
-                selectedUnit = units[i];
-                pos = i;
-                break;
-            }
-            //throw IDNotRecognisedException if unit with specified ID is not found
-            if (i==MAX_UNITS-1) {throw new IDNotRecognisedException("No unit exists with that ID");}
+                if (units[i].getID() == unitId)
+                {
+                    selectedUnit = units[i];
+                    pos = i;
+                    break;
+                }
+            }   
         }
+        //throw IDNotRecognisedException if unit with specified ID is not found
+        if (selectedUnit == null) {throw new IDNotRecognisedException("No unit exists with that ID!");}
         //if unit isBusy, throw exception
         if (selectedUnit.isBusy()) {throw new IllegalStateException("Unit is busy, cannot retire!");}
 
@@ -318,6 +321,8 @@ public class CityRescueImpl implements CityRescue {
         }
         //dont need to remove from incidents array, just becomes cancelled, regardless of whether it is dispatched or reported
         selectedIncident.setIncidentStatus(IncidentStatus.CANCELLED);
+        //incident no longer has that unit assigned to it
+        selectedIncident.setAssignedUnitID(999);
     }
 
     @Override

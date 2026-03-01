@@ -106,6 +106,8 @@ public class Station {
     {
         for (int i=0; i<units.length; i++)
         {
+            if (units[i] == null) {continue;}
+
             if (units[i].getID() == unit.getID())
             {
                 units[i] = null;

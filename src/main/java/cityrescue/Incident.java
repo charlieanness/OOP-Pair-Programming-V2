@@ -79,7 +79,7 @@ public class Incident {
     //checks if incident is not already being processed
     public boolean canBeCancelled()
     {
-        return ((incidentStatus != IncidentStatus.REPORTED) && (incidentStatus != IncidentStatus.DISPATCHED));
+        return ((incidentStatus == IncidentStatus.REPORTED) || (incidentStatus == IncidentStatus.DISPATCHED));
     }
 
     //checks if incident can be escalated (not resolved or cancelled)

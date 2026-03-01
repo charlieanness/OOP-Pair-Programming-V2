@@ -156,7 +156,7 @@ public abstract class Unit {
     //checks if unit is already occupied with an incident
     protected boolean isBusy()
     {
-        return !(unitStatus == UnitStatus.EN_ROUTE || unitStatus == UnitStatus.AT_SCENE);
+        return (unitStatus == UnitStatus.EN_ROUTE || unitStatus == UnitStatus.AT_SCENE);
     }
 
     /*
