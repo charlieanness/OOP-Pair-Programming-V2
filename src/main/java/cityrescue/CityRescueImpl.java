@@ -378,6 +378,7 @@ public class CityRescueImpl implements CityRescue {
                 
                 //gets bestUnit for particular incident
                 Unit bestUnit = Unit.getBestUnit(units, unitCount, getUnitIds(), incident);
+                if (bestUnit == null) {continue;}
 
                 //assigns incident to unit and sets unit en route
                 bestUnit.setCurrentIncidentID(incident.getID());

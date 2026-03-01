@@ -16,7 +16,6 @@ public class temporaryTesting {
 
         int[] sz = cr.getGridSize();
 
-        cr.addObstacle(1,1);
         cr.addStation("A", 2, 3);
         cr.addUnit(1, UnitType.AMBULANCE);
         cr.addUnit(1, UnitType.POLICE_CAR);
@@ -74,6 +73,48 @@ public class temporaryTesting {
         cr.removeStation(1);
 
         System.out.println(cr.getStatus());
+
+        cr.addStation("B", 4, 4);
+
+        System.out.println(cr.getStatus());
+
+        cr.addUnit(2, UnitType.AMBULANCE);
+
+        System.out.println(cr.getStatus());
+
+        cr.reportIncident(IncidentType.MEDICAL, 2, 0, 1);
+
+        cr.dispatch();
+
+        cr.tick();
+        System.out.println(cr.getStatus());
+
+        cr.tick();
+        System.out.println(cr.getStatus());
+
+        cr.tick();
+        System.out.println(cr.getStatus());
+
+        cr.tick();
+        System.out.println(cr.getStatus());
+
+        cr.tick();
+        System.out.println(cr.getStatus());
+
+        cr.tick();
+        System.out.println(cr.getStatus());
+
+        cr.tick();
+        System.out.println(cr.getStatus());
+
+        cr.tick();
+        System.out.println(cr.getStatus()); //work = 1 at incident
+        
+
+
+
+
+
 
 
 

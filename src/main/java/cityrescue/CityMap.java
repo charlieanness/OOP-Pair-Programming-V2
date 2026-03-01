@@ -16,13 +16,15 @@ public class CityMap {
     public CityMap(int width, int height)
     {
         this.blocked = new boolean[height][width];
-        this.width = width;
-        this.height = height;
+        //1 is reduced from width and height as the upper bound is NOT inclusive
+        this.width = width-1;
+        this.height = height-1;
     }
 
     public int[] getDimensions()
     {
-        int[] dimensions = {width, height};
+        //+1 so that it matches the original, passed in values
+        int[] dimensions = {width+1, height+1};
         return dimensions;
     }
 
@@ -51,7 +53,7 @@ public class CityMap {
     //checks if a cell is blocked
     public boolean isBlocked(int x, int y)
     {
-        return blocked[x][y];
+        return blocked[y][x];
     }
 
     //turns all cells to false, clearing the map of obstacles
@@ -150,9 +152,9 @@ public class CityMap {
         int newX = unit.getX() + xAdj;
         int newY = unit.getY() + yAdj;
 
-        if (newX < 0 || newX > 5) {return false;}
-        if (newY < 0 || newY > 5) {return false;}
-        if (blocked[newX][newY]) {return false;}
+        if (newX < 0 || newX > width) {return false;}
+        if (newY < 0 || newY > height) {return false;}
+        if (blocked[newY][newX]) {return false;}
 
         return true;
     }
