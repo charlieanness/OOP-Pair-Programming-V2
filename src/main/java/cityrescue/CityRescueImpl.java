@@ -475,25 +475,30 @@ public class CityRescueImpl implements CityRescue {
         //initialise blank strings for incident and unit info
         String allIncidentsString = new String();
         String allUnitsString = new String();
-        try
-        {
-            //appends incident info to string for each incident
-            for (Incident incident : incidents)
-            {
-                if (incident == null) {continue;}
 
+        //appends incident info to string for each incident
+        for (Incident incident : incidents)
+        {
+            if (incident == null) {continue;}
+
+            try
+            {
                 allIncidentsString += viewIncident(incident.getID()) + "\n";
             }
+            catch (Exception e) {System.out.println("An ID error has occurred in getStatus()-viewIncident(): " + e);}
+        }
 
-            //apends unit info to string for each unit
-            for (Unit unit : units)
+        //apends unit info to string for each unit
+        for (Unit unit : units)
+        {
+            if (unit == null) {continue;}
+
+            try
             {
-                if (unit == null) {continue;}
-
                 allUnitsString += viewUnit(unit.getID()) + "\n";
             }
+            catch (Exception e) {System.out.println("An ID error has occurred in getStatus()-viewUnit(): " + e);}
         }
-        catch (Exception e) {System.out.println("An ID error has occurred in getStatus(): " + e);}
 
         //returns large formatted strings, making use of new-line characters
         return

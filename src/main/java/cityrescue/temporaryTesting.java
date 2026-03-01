@@ -1,8 +1,6 @@
 package cityrescue;
 
-import cityrescue.*;
 import cityrescue.enums.*;
-import cityrescue.exceptions.*;
 
 public class temporaryTesting {
 
@@ -17,9 +15,13 @@ public class temporaryTesting {
         cr.addObstacle(1,1);
         cr.addStation("A", 2, 3);
         cr.addUnit(1, UnitType.AMBULANCE);
-        cr.reportIncident(IncidentType.CRIME, 3, 3, 3);
+        cr.reportIncident(IncidentType.MEDICAL, 3, 3, 3);
 
         System.out.println(sz);
         System.out.println(cr.getStatus());
+        cr.dispatch();
+        cr.tick();
+        System.out.println(cr.getStatus());
+
     }
 }
