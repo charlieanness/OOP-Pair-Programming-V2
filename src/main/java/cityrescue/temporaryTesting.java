@@ -26,6 +26,12 @@ public class temporaryTesting {
         cr.dispatch();
         cr.tick();
         System.out.println(cr.getStatus());
+        cr.tick();
+        System.out.println(cr.getStatus());
+        cr.tick();
+        System.out.println(cr.getStatus());
+
+
 
     }
 }

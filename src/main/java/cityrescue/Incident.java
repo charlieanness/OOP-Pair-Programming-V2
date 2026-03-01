@@ -109,6 +109,11 @@ public class Incident {
     */
     public String viewIncidentStats()
     {
+        //making assignedUnitID = "-" for formatting if it is 999 (not assigned)
+        String assignedUnitIDString;
+        if (assignedUnitID == 999) {assignedUnitIDString = "-";}
+        else {assignedUnitIDString = String.valueOf(assignedUnitID);}
+
         return
         (
             "I#"+incidentID+
@@ -116,7 +121,7 @@ public class Incident {
             " SEVERITY="+severity+
             " LOC=("+x+","+y+")"+
             " STATUS="+incidentStatus+
-            " UNIT="+assignedUnitID
+            " UNIT="+assignedUnitIDString
         );
     }
 

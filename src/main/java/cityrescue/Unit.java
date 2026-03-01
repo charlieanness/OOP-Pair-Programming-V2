@@ -103,6 +103,16 @@ public abstract class Unit {
     //returns a formatted string of information regarding the unit
     protected String viewUnitStats()
     {
+        //making currentIncidentID = "-" for formatting if it is 999 (not assigned)
+        String incidentIDString;
+        if (currentIncidentID == 999) {incidentIDString = "-";}
+        else {incidentIDString = String.valueOf(currentIncidentID);}
+
+        //making currentIncidentWork empty if its 0 (not working on an incident)
+        String currentWorkString;
+        if (currentIncidentWork == 0) {currentWorkString = "";}
+        else {currentWorkString = " WORK="+currentIncidentWork;}
+
         return
         (
             "U#"+unitID+
@@ -110,8 +120,8 @@ public abstract class Unit {
             " HOME="+ownerStationID+
             " LOC=("+x+","+y+")"+
             " STATUS="+unitStatus+
-            " INCIDENT="+currentIncidentID+
-            " WORK="+currentIncidentWork
+            " INCIDENT="+incidentIDString+
+            currentWorkString
         );
     }
 
