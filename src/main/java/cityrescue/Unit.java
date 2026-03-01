@@ -2,19 +2,35 @@ package cityrescue;
 import cityrescue.enums.*;
 import cityrescue.exceptions.*;
 
+/**
+ * The Unit class is an abstract class
+ * which defines protected attributes and methods,
+ * as well as abstract methods for the PoliceCar, 
+ * Ambulance and FireEngine classes to inherit from.
+ * Contains static functions that relate to Unit(s).
+ */
 public abstract class Unit {
 
-    protected UnitType unitType;
-    protected UnitStatus unitStatus;
-    protected int unitID;
+    protected UnitType unitType; //type of unit
+    protected UnitStatus unitStatus; //current status
+    protected int unitID; //unique ID
     protected int x;
     protected int y;
-    protected int ownerStationID;
-    protected int currentIncidentID;
-    protected int currentIncidentWork;
+    protected int ownerStationID; //ID of owner station
+    protected int currentIncidentID; //CRUCIAL: this is assigned 999 when not attached to an incident
+    protected int currentIncidentWork; //amount of work completed on an incident
 
-    protected abstract boolean canHandle(IncidentType type); //i should use this in getEligibleUnits()
+    /**
+     * Abstract method to check if a unit can resolve a specific incident by its type.
+     * @param type
+     * @return a boolean indicating whether this unit is matched to the incident type
+     */
+    protected abstract boolean canHandle(IncidentType type);
 
+    /**
+     * Abstract method to determine ticks required to do its job.
+     * @return int number of ticks required
+     */
     protected abstract int getTicksToResolve();
 
     protected int getID()
@@ -78,11 +94,13 @@ public abstract class Unit {
         this.y += y;
     }
 
+    //returns a boolean to indicate whether a unit has arrived at an incident yet
     protected boolean hasArrived(Incident incident)
     {
         return ((x == incident.getX()) && (y == incident.getY()));
     }
 
+    //returns a formatted string of information regarding the unit
     protected String viewUnitStats()
     {
         return
@@ -93,10 +111,11 @@ public abstract class Unit {
             " LOC=("+x+","+y+")"+
             " STATUS="+unitStatus+
             " INCIDENT="+currentIncidentID+
-            " WORK="+currentIncidentWork //removed a space before =
+            " WORK="+currentIncidentWork
         );
     }
 
+    //returns an existing unit specified by its ID
     protected static Unit getUnitFromID(Unit[] units, int unitID) throws IDNotRecognisedException
     {
         for (int i=0; i<units.length; i++)
@@ -112,6 +131,7 @@ public abstract class Unit {
         throw new IDNotRecognisedException("No unit with that ID exists!");
     }
 
+    //changes unit coords based on a station
     protected void moveCoordsToStation(Station newStation)
     {
         x = newStation.getX();
@@ -123,11 +143,17 @@ public abstract class Unit {
         return (unitStatus == UnitStatus.EN_ROUTE);
     }
 
+    //checks if unit is already occupied with an incident
     protected boolean isBusy()
     {
         return !(unitStatus == UnitStatus.EN_ROUTE || unitStatus == UnitStatus.AT_SCENE);
     }
 
+    /*
+    Uses a list of sorted unit IDs to
+    construct an array of current units
+    ordered by ID (ascending).
+    */
     public static Unit[] getSortedUnits(Unit[] units, int unitCount, int[] sortedIDs) throws IDNotRecognisedException
     {
         Unit[] sortedUnits = new Unit[unitCount];
@@ -143,6 +169,12 @@ public abstract class Unit {
         return sortedUnits;
     }
 
+    /*
+    Sorts units into ascending ID order,
+    constructing an array of the units that
+    determine it eligible for a specific incident.
+    Returns this array to getBestUnit().
+    */
     public static Unit[] getEligibleUnits(Unit[] units, int unitCount, int[] sortedIDs, Incident incident) throws IDNotRecognisedException
     {
         Unit[] eligibleUnits = new Unit[unitCount];
@@ -151,11 +183,6 @@ public abstract class Unit {
         Unit[] sortedUnits = getSortedUnits(units, unitCount, sortedIDs);
         for (Unit unit : sortedUnits)
         {
-            //replaced by canHandle() check below
-            // if (unit.getUnitType() == UnitType.AMBULANCE && incident.getIncidentType() != IncidentType.MEDICAL) {continue;}
-            // if (unit.getUnitType() == UnitType.FIRE_ENGINE && incident.getIncidentType() != IncidentType.FIRE) {continue;}
-            // if (unit.getUnitType() == UnitType.POLICE_CAR && incident.getIncidentType() != IncidentType.CRIME) {continue;}
-
             //if its type does not match the incident, then ignore it
             if (unit.canHandle(incident.getIncidentType()) == false) {continue;}
 
@@ -169,9 +196,13 @@ public abstract class Unit {
             eligibleUnits[pos] = unit;
             pos++;
         }
-        return eligibleUnits; //can have nulls, usually will
+        return eligibleUnits;
     }
 
+    /*
+    Applies tiebreaker function to all eligible units 
+    to return the unit best fit for a specific incident.
+    */
     public static Unit getBestUnit(Unit[] units, int unitCount, int[] sortedIDs, Incident incident) throws IDNotRecognisedException
     {
         Unit[] eligibleUnits = Unit.getEligibleUnits(units, unitCount, sortedIDs, incident); //gets all eligible units
@@ -189,11 +220,18 @@ public abstract class Unit {
         return bestUnit;
     }
 
+    /*
+    Applies movement tiebreaker by comparing distances to incident,
+    then comparing IDs (if distances tie), then comparing station IDs (if unit IDs tie).
+    Returns prioritised unit based on these tiebreakers.
+     */
     public static Unit applyTieBreaker(Unit unit1, Unit unit2, Incident incident)
     {
+        //calculates distances
         int unit1Dist = CityMap.calculateManhattanDistance(unit1.getX(), unit1.getY(), incident.getX(), incident.getY());
         int unit2Dist = CityMap.calculateManhattanDistance(unit2.getX(), unit2.getY(), incident.getX(), incident.getY());
 
+        //first compares distances
         if (unit1Dist < unit2Dist) {return unit1;}
         if (unit2Dist < unit1Dist) {return unit2;}
 

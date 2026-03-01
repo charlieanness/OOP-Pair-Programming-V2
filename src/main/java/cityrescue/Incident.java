@@ -2,16 +2,23 @@ package cityrescue;
 import cityrescue.enums.*;
 import cityrescue.exceptions.*;
 
+/**
+ * The Incident class contains all logic
+ * concerning incidents, such as its status,
+ * type, coordinates, etc.
+ * Contains static functions that relate to incident(s).
+ */
 public class Incident {
 
     private IncidentStatus incidentStatus;
     private IncidentType incidentType;
     private int incidentID;
     private int severity;
-    private int assignedUnitID;
+    private int assignedUnitID; //CRUCIAL: this is assigned 999 when no unit is assigned
     private int x;
     private int y;
 
+    //public constructor
     public Incident(int id, IncidentType type, int severity, int x, int y)
     {
         this.incidentID = id;
@@ -28,6 +35,7 @@ public class Incident {
         return incidentID;
     }
 
+    //returns a current incident by its specified ID
     public static Incident getIncidentFromID(Incident[] incidents, int incidentID) throws IDNotRecognisedException
     {
         for (int i=0; i<incidents.length; i++)
@@ -68,11 +76,13 @@ public class Incident {
         return y;
     }
 
+    //checks if incident is not already being processed
     public boolean canBeCancelled()
     {
         return ((incidentStatus != IncidentStatus.REPORTED) && (incidentStatus != IncidentStatus.DISPATCHED));
     }
 
+    //checks if incident can be escalated (not resolved or cancelled)
     public boolean canBeEscalated()
     {
         return ((incidentStatus != IncidentStatus.RESOLVED) && (incidentStatus != IncidentStatus.CANCELLED));
@@ -93,6 +103,10 @@ public class Incident {
         severity = newSeverity;
     }
 
+    /*
+    Returns a formatted string containing
+    information about the incident
+    */
     public String viewIncidentStats()
     {
         return
@@ -106,6 +120,10 @@ public class Incident {
         );
     }
 
+    /*
+    Uses a sorted incident IDs array to construct and return
+    an array of incidents in ID order (ascending).
+    */
     public static Incident[] getSortedIncidents(Incident[] incidents, int incidentCount, int[] sortedIDs) throws IDNotRecognisedException
     {
         Incident[] sortedIncidents = new Incident[incidentCount];
@@ -121,6 +139,7 @@ public class Incident {
         return sortedIncidents;
     }
 
+    //returns array of all current incidents that are reported
     public static Incident[] getReportedIncidents(Incident[] incidents)
     {
         Incident[] reportedIncidents = new Incident[countReportedIncidents(incidents)];
@@ -137,6 +156,7 @@ public class Incident {
         return reportedIncidents;
     }
 
+    //returns number of incidents that are in the "reported" state
     public static int countReportedIncidents(Incident[] incidents)
     {
         int count = 0;

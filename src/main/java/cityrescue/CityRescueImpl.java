@@ -20,15 +20,20 @@ public class CityRescueImpl implements CityRescue {
     public static final int MAX_UNITS = 50;
     public static final int MAX_INCIDENTS = 200;
 
+    //vars to keep track of incrementing unique IDs to assign
     public int nextStationID;
     public int nextUnitID;
     public int nextIncidentID;
 
-    public CityMap cityMap;
+    public CityMap cityMap; //CityMap object
     public int currentTick;
+
+    //arrays to contain  objects
     public Station[] stations;
     public Unit[] units;
     public Incident[] incidents;
+    
+    //counts of objects
     public int stationCount;
     public int unitCount;
     public int incidentCount;
@@ -353,6 +358,8 @@ public class CityRescueImpl implements CityRescue {
     @Override
     public void dispatch() {
 
+        //try statement will catch any IDNotRecognised errors, which should never occur
+        //as it uses IDs which it has already found in the program, so the IDs should always exist
         try
         {
             //gets reported incidents in ID order
@@ -384,6 +391,8 @@ public class CityRescueImpl implements CityRescue {
         //increment tick
         currentTick++;
         
+        //try statement will catch any IDNotRecognised errors, which should never occur
+        //as it uses IDs which it has already found in the program, so the IDs should always exist
         try
         {
             //gets incidents by ascending ID order
@@ -445,6 +454,7 @@ public class CityRescueImpl implements CityRescue {
             }
 
             //mark arrivals, have to go through sortedIncidents again so its in ID order
+
             sortedIncidents = Incident.getSortedIncidents(incidents, incidentCount, getIncidentIds());
             for (Incident incident : sortedIncidents)
             {

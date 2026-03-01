@@ -2,6 +2,10 @@ package cityrescue;
 
 import cityrescue.enums.*;
 
+/**
+ * This class is here solely for separate individual tests that I wanted to run
+ * during debugging, etc
+ */
 public class temporaryTesting {
 
     public static void main(String[] args) throws Exception

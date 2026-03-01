@@ -3,16 +3,23 @@ package cityrescue;
 import cityrescue.exceptions.IDNotRecognisedException;
 import cityrescue.exceptions.CapacityExceededException;
 
+/**
+ * The station class contains all
+ * information regarding stations,
+ * also contains a list of units that it owns.
+ * Contains static functions that relate to station(s).
+ */
 public class Station {
 
     private String name;
-    private int capacity;
-    private int stationID;
-    private Unit[] units;
-    private int unitCount;
+    private int capacity; //number of units station can hold
+    private int stationID; //unique ID
+    private Unit[] units; //array of owned units
+    private int unitCount; //number of owned units
     private int x;
     private int y;
 
+    //public constructor with name, ID and coords arguments
     public Station(String name, int ID, int x, int y)
     {
         this.x = x;
@@ -57,6 +64,7 @@ public class Station {
         return this.y;
     }
 
+    //returns existing station by a specified ID
     public static Station getStationFromID(Station[] stations, int stationID) throws IDNotRecognisedException
     {
         for (int i=0; i<stations.length; i++)
@@ -72,13 +80,17 @@ public class Station {
         throw new IDNotRecognisedException("No station with that ID exists!");
     }
 
+    /*
+    Adds a unit to a specific station,
+    changing its owner station, etc.
+    */
     public void addUnitToStation(Unit unit)
     {
-        //checks that the unitcount is not the same as the max units array size, throws error if it is
+        //checks that the unit count is not the same as the max units array size, throws error if it is
         if (this.unitCount == units.length) {throw new CapacityExceededException("Can't add another unit!");} 
-        for (int i=0; i<units.length;i++) //removed .this before units in this line and above
+        for (int i=0; i<units.length;i++)
         {
-            if (this.units[i] == null) //checks for space
+            if (this.units[i] == null) //checks for space in array
             {
                 this.units[i] = unit;
                 this.unitCount++;
@@ -89,6 +101,7 @@ public class Station {
         
     }
 
+    //removes a unit from a station based on the units ID
     public void removeUnitFromStation(Unit unit)
     {
         for (int i=0; i<units.length; i++)
