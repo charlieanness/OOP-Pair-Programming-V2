@@ -118,7 +118,7 @@ public class Incident {
         (
             "I#"+incidentID+
             " TYPE="+incidentType+
-            " SEVERITY="+severity+
+            " SEV="+severity+
             " LOC=("+x+","+y+")"+
             " STATUS="+incidentStatus+
             " UNIT="+assignedUnitIDString
