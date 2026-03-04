@@ -13,8 +13,6 @@ import java.util.Arrays;
  */
 public class CityRescueImpl implements CityRescue {
 
-    // TODO: add fields (map, arrays for stations/units/incidents, counters, tick, etc.)
-
     //define constants for array sizes and checks
     public static final int MAX_STATIONS = 20;
     public static final int MAX_UNITS = 50;
